@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useSearchParams } from "next/navigation";
 import Card from "@/components/Card";
@@ -10,37 +10,34 @@ import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
 
 export default function BrowsePage() {
-    const searchParams = useSearchParams();
-    const query = searchParams?.get("q");
+  const searchParams = useSearchParams();
+  const query = searchParams?.get("q");
 
-    const [Loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(query || '');
+  const [posts, setPosts] = useState<newsCard[]>([]);
 
-      const router = useRouter();
-    
-      const [searchQuery, setSearchQuery] = useState(query ||'');
+  const router = useRouter();
 
-        const handleSearch = () => {
-        if (searchQuery) {
-          router.push(`/browse?q=${searchQuery}`);
-        }
-      };
+  const handleSearch = () => {
+    const trimmedQuery = searchQuery.trim();
+    if (trimmedQuery) {
+      router.push(`/browse?q=${encodeURIComponent(trimmedQuery)}`);
+    }
+  };
 
-  const [posts, setPosts] = useState([]);
   useEffect(() => {
     setLoading(true);
     getSearchResults(query || '').then((data) => {
       setPosts(data);
-      setSearchQuery(query || '');
       setLoading(false);
-      
-    })
-  },[query])
-
+    });
+  }, [query]);
 
   return (
-    <main className=" min-h-screen bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
-      {/* Header Section */}
-      <div className="mb-10  motion-preset-fade  ">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+      {/* Header */}
+      <div className="mb-10">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
           Browse Articles
         </h1>
@@ -49,35 +46,15 @@ export default function BrowsePage() {
         </p>
       </div>
 
-      {/* Search Bar - Your Original Design */}
-      <div className="mb-10  motion-preset-fade  ">
-        <div className="
-          border
-          text-foreground
-          flex
-          items-center
-          border-l-4
-          border-l-peach
-          gap-1
-          border-gray-100
-          shadow-sm
-          p-2 px-4
-          rounded-sm
-          w-full sm:w-[420px] md:w-[520px] lg:w-[640px]
-        ">
+      {/* Search Bar */}
+      <div className="mb-10">
+        <div className="border text-foreground flex items-center border-l-4 border-l-peach gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm w-full sm:w-[420px] md:w-[520px] lg:w-[640px]">
           <input
             type="text"
             onChange={(e) => setSearchQuery(e.target.value)}
             value={searchQuery}
-            onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-            className="
-              outline-none
-              text-foreground
-              transition-all
-              duration-300
-              w-full
-              bg-transparent
-            "
+            onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            className="outline-none text-foreground transition-all duration-300 w-full bg-transparent"
             placeholder="Search Author, Company, or Keyword..."
           />
           <button onClick={handleSearch}>
@@ -96,17 +73,17 @@ export default function BrowsePage() {
         </p>
       </div>
 
-      {Loading ? (
+      {/* Results */}
+      {loading ? (
         <div className="flex items-center justify-center min-h-[40vh]">
           <Load />
         </div>
       ) : posts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {posts.map((post: any, index) => {
-            const firstCategory =
-              Array.isArray(post.categories) && post.categories.length > 0
-                ? post.categories[0].title || ''
-                : '';
+          {posts.map((post, index) => {
+            const firstCategory = Array.isArray(post.categories) && post.categories.length > 0
+              ? post.categories[0].title || ''
+              : '';
 
             const cardData: newsCard = {
               title: post.title || '',
@@ -116,28 +93,21 @@ export default function BrowsePage() {
               slug: post.slug || '',
               publishedAt: post.publishedAt || '',
               id: post.id || '',
-              delay: (index+1) * 100,
+              delay: (index + 1) * 100,
             };
-             
-            console.log(cardData)
+
             return <Card key={post.slug || post.id} {...cardData} />;
           })}
         </div>
       ) : (
-        // Empty State
         <div className="text-center py-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
             <Search className="text-gray-400" size={32} />
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">
-            No articles found
-          </h3>
-          <p className="text-gray-600">
-            Try adjusting your search terms
-          </p>
+          <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
+          <p className="text-gray-600">Try adjusting your search terms</p>
         </div>
       )}
-
     </main>
   );
 }
