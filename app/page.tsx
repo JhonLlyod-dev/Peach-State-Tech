@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
 import { getNewsCard } from "@/sanity/queries";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -115,7 +116,9 @@ export default function Home() {
 
       </div>
       <button className=" cursor-pointer font-bold mt-8 self-center hover:bg-peach hover:text-white transition duration-100 ease-in  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">
-        Browse More
+        <Link href="/browse">
+          Browse More
+        </Link>
       </button>
     </div>
     </main>
