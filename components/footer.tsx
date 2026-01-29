@@ -1,4 +1,5 @@
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram,FaPaperPlane } from "react-icons/fa";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -18,9 +19,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row gap-10 motion-preset-fade motion-delay-200">
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold text-gray-200">Company</h4>
-            <a href="#" className="text-gray-400 hover:text-peach transition">About</a>
-            <a href="#" className="text-gray-400 hover:text-peach transition">Blog</a>
-            <a href="#" className="text-gray-400 hover:text-peach transition">Contact</a>
+            <Link href="/about" className="text-gray-400 hover:text-peach transition">About</Link>
           </div>
 
           <div className="flex flex-col gap-2 motion-preset-fade motion-delay-300">
