@@ -116,7 +116,7 @@ export default function Home() {
 
       </div>
       <button className=" cursor-pointer font-bold mt-8 self-center hover:bg-peach hover:text-white transition duration-100 ease-in  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">
-        <Link href="/browse">
+        <Link href="/browse?">
           Browse More
         </Link>
       </button>

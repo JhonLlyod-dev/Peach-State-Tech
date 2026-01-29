@@ -45,7 +45,7 @@ export default function Header() {
                   <Link href="/">Latest</Link>
                 </li>
                 <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
-                  <Link href="/browse">Browse</Link>
+                  <Link href="/browse?">Browse</Link>
                 </li>
                 <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
                   <Link href="/about">About</Link>
