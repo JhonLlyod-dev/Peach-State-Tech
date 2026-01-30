@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "postbuild": "ts-node ./node_modules/next-sitemap/bin/next-sitemap.js"
+    "postbuild": "next-sitemap"
   },
   "dependencies": {
     "@portabletext/react": "^6.0.2",
