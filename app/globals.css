@@ -59,13 +59,19 @@ body {
 .loader-text {
   position: absolute;
   top: 0;
+  left: 0;
+  transform: translateX(100%);
+  
+  text-align: start;
   padding: 0;
   margin: 0;
   color: #fccec3;
   animation: text_713 3.5s ease both infinite;
-  font-size: .8rem;
+  font-size: 0.8rem;
   letter-spacing: 1px;
+  width: 100%;
 }
+
 
 .load {
   background-color: #FFB7A5;
