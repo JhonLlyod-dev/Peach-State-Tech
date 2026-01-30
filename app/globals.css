@@ -26,6 +26,16 @@
   @apply hover:scale-110 transition duration-300 cursor-pointer;
 }
 
+.pagination{
+  @apply bg-peach text-white py-1 px-3 rounded-md
+hover:scale-110 active:scale-95
+transform ease-in-out duration-300
+disabled:bg-gray-300 disabled:text-gray-500
+disabled:hover:scale-100 disabled:cursor-not-allowed
+cursor-pointer
+
+}
+
 body {
   background: var(--background);
   color: var(--foreground);

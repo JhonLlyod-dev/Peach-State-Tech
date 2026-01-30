@@ -8,6 +8,7 @@ import { Search } from "lucide-react";
 import { getSearchResults } from "@/sanity/queries";
 import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
+import {ChevronLeft,ChevronRight} from "lucide-react";
 
 export default function BrowseClient() {
   const searchParams = useSearchParams();
@@ -34,6 +35,26 @@ export default function BrowseClient() {
     });
   }, [query]);
 
+
+  // Pagination logic
+
+  const [page, setPage] = useState(1);
+  const postsPerPage = 6;
+  const indexOfLastPost = page * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+  
+  const totalPages = Math.ceil(posts.length / postsPerPage);
+
+
+  function pageHandler(condition: string){
+    if(condition === "next"){
+      setPage(page + 1);
+    }else if(condition === "prev"){
+      setPage(page - 1);
+    }
+  }
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
       {/* Header */}
@@ -57,7 +78,7 @@ export default function BrowseClient() {
             className="outline-none text-foreground transition-all duration-300 w-full bg-transparent"
             placeholder="Search Author, Company, or Keyword..."
           />
-          <button onClick={handleSearch}>
+          <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
             <Search size={16} />
           </button>
         </div>
@@ -79,26 +100,45 @@ export default function BrowseClient() {
           <Load />
         </div>
       ) : posts.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {posts.map((post, index) => {
-            const firstCategory = Array.isArray(post.categories) && post.categories.length > 0
-              ? post.categories[0].title || ''
-              : '';
+        <div className={`flex flex-col gap4`}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {currentPosts.map((post, index) => {
+                const firstCategory = Array.isArray(post.categories) && post.categories.length > 0
+                  ? post.categories[0].title || ''
+                  : '';
 
-            const cardData: newsCard = {
-              title: post.title || '',
-              description: post.description || '',
-              coverImage: post.coverImage || '',
-              categories: firstCategory,
-              slug: post.slug || '',
-              publishedAt: post.publishedAt || '',
-              id: post.id || '',
-              delay: (index + 1) * 100,
-            };
+                const cardData: newsCard = {
+                  title: post.title || '',
+                  description: post.description || '',
+                  coverImage: post.coverImage || '',
+                  categories: firstCategory,
+                  slug: post.slug || '',
+                  publishedAt: post.publishedAt || '',
+                  id: post.id || '',
+                  delay: (index + 1) * 100,
+                };
 
-            return <Card key={post.slug || post.id} {...cardData} />;
-          })}
+                return <Card key={post.slug || post.id} {...cardData} />;
+              })}
+            </div>
+
+            <div className="flex-center gap-2  mt-4">
+
+              <button disabled={page === 1} onClick={() => pageHandler("prev") } className="pagination">
+                <ChevronLeft size={18} className="" />
+              </button>
+
+              <span className="text-gray-600 font-semibold">
+                {page} of {totalPages}
+              </span>
+
+              <button disabled={page === totalPages} onClick={() => pageHandler("next") }  className="pagination">
+                <ChevronRight size={18} />
+              </button>
+
+            </div>
         </div>
+        
       ) : (
         <div className="text-center py-16">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">

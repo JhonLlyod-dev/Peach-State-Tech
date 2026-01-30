@@ -7,6 +7,7 @@ import BarticleSmall from "@/components/Barticle";
 import { PortableText } from "@portabletext/react";
 import {portableTextComponents} from "@/lib/Portable";
 import { newsCard } from "@/components/Card";
+import CopyLinkButton from "@/components/Copy";
 
 
 
@@ -125,7 +126,7 @@ export default async function BlogPost({ params }: PageProps) {
           </p>
 
           {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 pb-6 border-b border-gray-200">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 pb-6 border-b border-peach">
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-peach" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -153,17 +154,13 @@ export default async function BlogPost({ params }: PageProps) {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">
-              <button className="p-2.5 hover:bg-gray-100 rounded-lg transition-colors duration-200 group">
-                <svg className="w-5 h-5 text-gray-600 group-hover:text-peach transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                </svg>
-              </button>
+              <CopyLinkButton/>
             </div>
           </div>
         </article>
 
         {/* Article Body */}
-        <div className="motion-preset-focus motion-delay-200 bg-white flex flex-col rounded-2xl shadow-lg  mb-8">
+        <div className="motion-preset-focus motion-delay-200 bg-white flex flex-col rounded-2xl shadow-lg pb-4  mb-8">
           <img src={urlFor(post.coverImage).url()} alt={post.title} className="w-full h-86 object-cover rounded-t-2xl" />
           <div className="px-6 pt-4 sm:px-10">
             <PortableText value={post.body} components={portableTextComponents} />
@@ -171,7 +168,7 @@ export default async function BlogPost({ params }: PageProps) {
         </div>
 
         {/* Author Bio Card */}
-        <div className="bg-gradient-to-br motion-preset-focus motion-delay-300 from-gray-50 to-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-gray-100">
+        <div className="motion-preset-focus motion-delay-300 bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-gray-100">
           <h3 className="text-xl font-bold text-gray-900 mb-4">About the Author</h3>
           <div className="flex items-start gap-4">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-peach to-orange-500 flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">

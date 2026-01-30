@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 
 export function getNewsCard(){
   return sanityClient.fetch(`
-    *[_type == "post"]| order(publishedAt desc){
+    *[_type == "post"]| order(publishedAt desc) [0...5] {
         title, publishedAt, description,
         "id": _id,
         "coverImage": mainImage.asset._ref,
@@ -18,26 +18,36 @@ export function getNewsCard(){
 }
 
 export function getSearchResults(query: string) {
-  // If no query, fetch all posts
   const filter = query
-    ? `&& (title match "${query}*" || description match "${query}*" || author->name match "${query}*")`
+    ? `&& (
+        title match "${query}*" ||
+        description match "${query}*" ||
+        author->name match "${query}*" ||
+        categories[].title match "${query}*"
+      )`
     : "";
 
+  // 👇 limit only when there is NO query
+  const limit = query ? "" : "[0...6]";
+
   return sanityClient.fetch(`
-    *[_type == "post" ${filter}] | order(publishedAt desc) {
-      title,
-      publishedAt,
-      description,
-      "id": _id,
-      "coverImage": mainImage.asset._ref,          // full image object, use urlFor to build URL later
-      "categories": categories[]->{
+    *[_type == "post" ${filter}]
+      | order(publishedAt desc)
+      ${limit} {
         title,
-        description
-      },
-      "slug": slug.current
-    }
+        publishedAt,
+        description,
+        "id": _id,
+        "coverImage": mainImage.asset._ref,
+        "categories": categories[]->{
+          title,
+          description
+        },
+        "slug": slug.current
+      }
   `);
 }
+
 
 
  export function getArticle(slug: string, id: string) {

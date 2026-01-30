@@ -80,7 +80,7 @@ export default function Home() {
               "
               placeholder="Search Author, Company, or Keyword..."
             />
-            <button onClick={handleSearch}>
+            <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
                 <Search size={16} />
             </button>
           </div>

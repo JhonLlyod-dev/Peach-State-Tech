@@ -70,8 +70,7 @@ export default function Header() {
         </ul>
 
         <div className=" motion-preset-slide-down-right motion-delay-100 border hidden sm:flex-center border-l-4  border-l-peach gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm">
-          <input
-            type="text"
+          <input type="text"
             onFocus={() => setIsSearchOpen(true)}
             onBlur={() => setIsSearchOpen(false)}
             onChange={(e)=> setSearchQuery(e.target.value)}
@@ -87,7 +86,7 @@ export default function Header() {
             placeholder="Search blog..."
           />
 
-          <button onClick={handleSearch}>
+          <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
               <Search size={16} />
           </button>
 
