@@ -28,6 +28,7 @@ export default function Home() {
   }, []);
 
 
+
   return (
     <main className=" flex flex-col min-h-screen bg-zinc-50 font-sans ">
     <div className="  w-full h-88 sm:h-112 md:h-136 overflow-hidden bg-foreground px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32  relative">
@@ -94,6 +95,11 @@ export default function Home() {
       <h2 className="font-bold  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">Latest</h2>
 
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+        {posts.length === 0 && 
+          <span className="mt-12 col-span-1 sm:col-span-2 md:col-span-3 flex-center  text-gray-400  ">We’re working on new articles. Stay tuned!</span>
+        }
+
         {posts.map((post: any, index) => {
           const firstCategory =
             Array.isArray(post.categories) && post.categories.length > 0
@@ -115,11 +121,13 @@ export default function Home() {
         })}
 
       </div>
-      <button className=" cursor-pointer font-bold mt-8 self-center hover:bg-peach hover:text-white transition duration-100 ease-in  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">
-        <Link href="/browse?">
-          Browse More
-        </Link>
-      </button>
+      { posts.length > 0 &&
+        <button className=" cursor-pointer font-bold mt-8 self-center hover:bg-peach hover:text-white transition duration-100 ease-in  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">
+          <Link href="/browse?">
+            Browse More
+          </Link>
+        </button>
+      }
     </div>
     </main>
   );
