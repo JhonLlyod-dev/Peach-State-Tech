@@ -149,7 +149,7 @@ export default function BrowseClient() {
         </h2>
 
         <Image
-          src="/search.webp" 
+          src="./search.webp" // added dot ./
           alt="  Confused animated character with no articles available"
           width={160}
           height={160}
