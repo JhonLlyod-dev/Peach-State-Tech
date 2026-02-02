@@ -149,8 +149,8 @@ export default function BrowseClient() {
         </h2>
 
         <Image
-          src="./search.webp" // added dot ./
-          alt="  Confused animated character with no articles available"
+          src="/search.webp" 
+          alt="Confused animated character with no articles available"
           width={160}
           height={160}
           className=" motion-preset-blur-left-lg delay-200 w-24 sm:w-28 md:w-36"
