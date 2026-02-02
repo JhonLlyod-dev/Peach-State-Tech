@@ -15,7 +15,7 @@ export default function PageNotFound() {
       </h1>
 
       <Image
-        src="/404.png"
+        src="/404.webp"
         alt="Embarrassed animated character for 404 page"
         width={160}
         height={160}

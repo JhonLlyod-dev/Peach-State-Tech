@@ -56,7 +56,6 @@ export default function About() {
           companies shaping Georgia’s technology landscape.
         </p>
       </section>
-
     </main>
   );
 }
