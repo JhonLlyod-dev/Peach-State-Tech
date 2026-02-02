@@ -25,6 +25,9 @@
 .hover-link {
   @apply hover:scale-110 transition duration-300 cursor-pointer;
 }
+.hover-link2 {
+  @apply active:scale-95 hover:scale-105 transition duration-300 cursor-pointer;
+}
 
 .pagination{
   @apply bg-peach text-white py-1 px-3 rounded-md

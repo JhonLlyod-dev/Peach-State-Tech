@@ -9,6 +9,8 @@ import { getSearchResults } from "@/sanity/queries";
 import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
 import {ChevronLeft,ChevronRight} from "lucide-react";
+import Image from "next/image";
+import { FileSearch, ArrowLeft } from "lucide-react";
 
 export default function BrowseClient() {
   const searchParams = useSearchParams();
@@ -35,7 +37,6 @@ export default function BrowseClient() {
     });
   }, [query]);
 
-
   // Pagination logic
 
   const [page, setPage] = useState(1);
@@ -56,7 +57,7 @@ export default function BrowseClient() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+    <main className="min-h-[90vh] bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
       {/* Header */}
       <div className="mb-10">
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
@@ -140,13 +141,28 @@ export default function BrowseClient() {
         </div>
         
       ) : (
-        <div className="text-center py-16">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-            <Search className="text-gray-400" size={32} />
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 mb-2">No articles found</h3>
-          <p className="text-gray-600">Try adjusting your search terms</p>
-        </div>
+    <section className="min-h-[20vh] flex flex-col items-center justify-center px-4 text-center gap-4 sm:gap-5">
+      
+      <div className="flex-center">
+        <h2 className="motion-preset-blur-down-lg delay-600 text-peach font-black tracking-wide text-2xl sm:text-3xl md:text-4xl">
+          Not Found
+        </h2>
+
+        <Image
+          src="/search.png" // same image reused ✅
+          alt="  Confused animated character with no articles available"
+          width={160}
+          height={160}
+          className=" motion-preset-blur-left-lg delay-200 w-24 sm:w-28 md:w-36"
+          priority
+        />
+      </div>
+
+      <p className="motion-preset-blur-down-lg delay-800 text-gray-600 text-sm sm:text-base max-w-xs sm:max-w-md">
+        Hmm… we couldn’t find any articles matching your search. Try another one!
+      </p>
+
+    </section>
       )}
     </main>
   );

@@ -9,6 +9,7 @@ import Load from "@/components/Load";
 import { getNewsCard } from "@/sanity/queries";
 import Link from "next/link";
 
+
 export default function Home() {
   const router = useRouter();
 
@@ -52,7 +53,7 @@ export default function Home() {
           <h3 className="font-extralight text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl italic">
             " Discover the stories behind Georgia’s fastest-growing companies. "
           </h3>
-
+          
           <div className="
             border
             text-foreground

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getArticle,sameCategory } from "@/sanity/queries";
-import PageNotFound from "@/components/pageNotFound";
+import PageNotFound from "@/app/not-found";
 import { formatDate } from "@/lib/format";
 import { urlFor } from "@/sanity/sanityClient";
 import BarticleSmall from "@/components/Barticle";
