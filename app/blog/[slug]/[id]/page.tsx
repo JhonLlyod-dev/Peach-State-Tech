@@ -88,6 +88,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.description,
       type: "article",
     },
+    keywords: [
+      post.title,
+      post.description,
+      post.categories[0].title,
+    ],
   };
 }
 

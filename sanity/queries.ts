@@ -5,7 +5,7 @@ import { Search } from "lucide-react";
 
 export function getNewsCard(){
   return sanityClient.fetch(`
-    *[_type == "post"]| order(publishedAt desc) [0...5] {
+    *[_type == "post"]| order(publishedAt desc) [0...6] {
         title, publishedAt, description,
         "id": _id,
         "coverImage": mainImage.asset._ref,
