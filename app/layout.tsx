@@ -26,6 +26,10 @@ export const metadata: Metadata = {
     "Tech news Georgia",
     "Peach State Tech",
     "Technology blog Georgia",
+    'Peach State Tech',
+    'Blog', 'Peach State Blog',
+    'Peach State Tech Blog', 'Georgia Peach State',
+    'Georgia Peach State Tech', 'Georgia Blog','Georgia Peach State Tech Blog'
   ],
   openGraph: {
     title: "Peach State Tech",

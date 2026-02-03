@@ -36,9 +36,9 @@ type Post = {
 
 
 
-async function fetchPostBySlug(slug: string, id: string): Promise<Post | null> {
+async function fetchPostBySlug(slug: string): Promise<Post | null> {
   try {
-    const article = await getArticle(slug, id);
+    const article = await getArticle(slug);
 
     if (!article || !article.length) return null; // nothing found
 
@@ -70,8 +70,8 @@ type PageProps = {
 
 // ✅ Dynamic metadata
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const {slug, id} =  await params;
-  const post = await fetchPostBySlug(slug, id);
+  const {slug} =  await params;
+  const post = await fetchPostBySlug(slug);
 
   if (!post) {
     return {
@@ -88,17 +88,24 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: post.description,
       type: "article",
     },
+    alternates: {
+      canonical: `https://peachstatetech.com/blog/${post.slug}`,
+    },
     keywords: [
       post.title,
       post.description,
       post.categories[0].title,
+      'Peach State Tech',
+      'Blog', 'Peach State Blog',
+      'Peach State Tech Blog', 'Georgia Peach State',
+      'Georgia Peach State Tech', 'Georgia Blog','Georgia Peach State Tech Blog'
     ],
   };
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const {slug, id} =  await params;
-  const post = await fetchPostBySlug(slug, id);
+  const {slug} =  await params;
+  const post = await fetchPostBySlug(slug);
 
 
 

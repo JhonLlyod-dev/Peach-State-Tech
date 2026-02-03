@@ -33,7 +33,7 @@ export default function BarticleSmall(card: newsCard) {
         {/* Footer */}
         <div className="flex justify-between items-center mt-2 text-gray-500 text-xs">
           <span>{formatDate(card.publishedAt)}</span>
-          <Link href={`/blog/${card.slug}/${card.id}`} className="text-peach font-semibold hover:underline">
+          <Link href={`/blog/${card.slug}`} className="text-peach font-semibold hover:underline">
             Read → 
           </Link>
         </div>

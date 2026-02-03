@@ -50,10 +50,10 @@ export function getSearchResults(query: string) {
 
 
 
- export function getArticle(slug: string, id: string) {
+ export function getArticle(slug: string) {
 
   return sanityClient.fetch(`
-    *[_type == "post" && slug.current == "${slug}" && _id == "${id}"]{
+    *[_type == "post" && slug.current == "${slug}"]{
       title,
       publishedAt,
       description,

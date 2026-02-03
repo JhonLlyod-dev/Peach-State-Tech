@@ -44,7 +44,7 @@ export default function Card(card: newsCard) {
         <div className="flex justify-between items-center mt-4 text-gray-500 text-xs sm:text-sm">
           <span>{formatDate(card.publishedAt)}</span>
           <Link
-            href={`/blog/${card.slug}/${card.id}`}
+            href={`/blog/${card.slug}`}
             className="text-peach font-semibold hover:underline"
           >
             Read More →
