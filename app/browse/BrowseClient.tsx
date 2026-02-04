@@ -29,13 +29,7 @@ export default function BrowseClient() {
     }
   };
 
-  useEffect(() => {
-    setLoading(true);
-    getSearchResults(query || '').then((data) => {
-      setPosts(data);
-      setLoading(false);
-    });
-  }, [query]);
+
 
   // Pagination logic
 
@@ -55,6 +49,15 @@ export default function BrowseClient() {
       setPage(page - 1);
     }
   }
+
+  useEffect(() => {
+    setLoading(true);
+    setPage(1);
+    getSearchResults(query || '').then((data) => {
+      setPosts(data);
+      setLoading(false);
+    });
+  }, [query]);
 
   return (
     <main className="min-h-[90vh] bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
