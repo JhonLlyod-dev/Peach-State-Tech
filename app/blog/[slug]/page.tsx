@@ -87,6 +87,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: post.title,
       description: `${post.title}. ${post.description}`,
       type: "article",
+      url: `https://peachstatetech.com/blog/${post.slug}`,
+      siteName: `${post.title} | Peach State Tech`,
+      images: [
+        {
+          url: urlFor(post.coverImage).url(),
+          width: 800,
+          height: 600,
+          alt: post.slug,
+        },
+      ]
     },
     alternates: {
       canonical: `https://peachstatetech.com/blog/${post.slug}`,

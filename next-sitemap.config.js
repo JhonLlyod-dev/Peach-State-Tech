@@ -29,6 +29,8 @@ export default {
     return posts.map((post) => ({
       loc: `/blog/${post.slug}`,
       lastmod: post._updatedAt,
+      changefreq: 'weekly',
+      priority: 0.7,
     }));
   },
 };
