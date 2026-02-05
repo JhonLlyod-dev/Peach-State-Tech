@@ -35,7 +35,7 @@ export default function About() {
             What We Do
           </h2>
           <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed max-w-3xl">
-         We publish in-depth features, interviews, and industry insights
+          We publish in-depth features, interviews, and industry insights
           covering Georgia’s fast-growing technology sector. Our platform
           helps companies improve visibility, credibility, and reach
           across Georgia’s innovation ecosystem.

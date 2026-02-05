@@ -20,6 +20,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold text-gray-200">Company</h4>
             <Link href="/about" className="text-gray-400 hover:text-peach transition">About</Link>
+            <Link href="/contact" className="text-gray-400 hover:text-peach transition">Contact</Link>
           </div>
 
           <div className="flex flex-col gap-2 motion-preset-fade motion-delay-300">
@@ -32,48 +33,13 @@ export default function Footer() {
 
         {/* Social Icons */}
         <div className="flex flex-col gap-4 mt-4 md:mt-0 motion-preset-fade motion-delay-400">
+          <h4 className="font-semibold text-gray-200">Socials</h4>
           <div className="flex gap-4">
             <a href="#" className="text-gray-400 hover:text-peach transition"><FaFacebookF /></a>
             <a href="#" className="text-gray-400 hover:text-peach transition"><FaTwitter /></a>
             <a href="#" className="text-gray-400 hover:text-peach transition"><FaLinkedinIn /></a>
             <a href="#" className="text-gray-400 hover:text-peach transition"><FaInstagram /></a>
           </div>
-
-          <div className="flex flex-col gap-2 motion-preset-fade motion-delay-400">
-            <span className="text-sm text-gray-300 font-semibold">
-              Get Featured
-            </span>
-
-            <div className="flex items-center  border border-gray-700 rounded-sm overflow-hidden ">
-              <input
-                type="email"
-                placeholder="Your email"
-                className="
-                  bg-transparent
-                  outline-none
-                  px-3
-                  text-sm
-                  text-white
-                  placeholder:text-gray-400
-                  w-full
-                "
-              />
-              <button
-                className="
-                  px-3
-                  py-2
-                  bg-peach
-                  text-white
-                  hover:opacity-90
-                  transition
-                "
-                aria-label="Send email"
-              >
-                <FaPaperPlane size={14} />
-              </button>
-            </div>
-          </div>
-
         </div>
 
       </div>
