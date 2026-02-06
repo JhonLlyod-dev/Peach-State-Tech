@@ -19,7 +19,11 @@ export const portableTextComponents = {
     ),
 
     h2: ({ children }: any) => (
-      <h2 className="text-3xl font-semibold mt-8 mb-4">{children}</h2>
+      <div className="mt-8 mb-4">
+        <h2 className="text-3xl font-semibold">{children}</h2>
+        <div className="h-1 w-[30%] bg-gradient-to-r from-peach to-peach/0 rounded-full"></div>
+      </div>
+      
     ),
 
     /** ✅ ADDED */

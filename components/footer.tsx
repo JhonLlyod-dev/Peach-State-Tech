@@ -25,9 +25,8 @@ export default function Footer() {
 
           <div className="flex flex-col gap-2 motion-preset-fade motion-delay-300">
             <h4 className="font-semibold text-gray-200">Resources</h4>
-            <a href="#" className="text-gray-400 hover:text-peach transition">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-peach transition">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-peach transition">Help Center</a>
+            <Link href="/privacy" className="text-gray-400 hover:text-peach transition">Privacy Policy</Link>
+            <Link href="/terms" className="text-gray-400 hover:text-peach transition">Terms of Service</Link>
           </div>
         </div>
 

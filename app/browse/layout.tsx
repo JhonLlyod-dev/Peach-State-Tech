@@ -10,7 +10,11 @@ export const metadata: Metadata = {
       'Blog', 'Peach State Blog',
       'Peach State Tech Blog', 'Georgia Peach State',
       'Georgia Peach State Tech', 'Georgia Blog','Georgia Peach State Tech Blog'
-  ]
+  ],
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function BrowseLayout({ children }: Readonly<{ children: React.ReactNode }>) {

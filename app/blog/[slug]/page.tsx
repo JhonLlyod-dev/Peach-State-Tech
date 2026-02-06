@@ -226,7 +226,7 @@ export default async function BlogPost({ params }: PageProps) {
                   delay: (index+1) * 100,
                 };
 
-                console.log(cardData);
+                
               return <BarticleSmall key={post.id} {...cardData} ></BarticleSmall>
             } )}   
 

@@ -40,6 +40,10 @@ export const metadata: Metadata = {
     siteName: "Peach State Tech",
     type: "website",
   },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 

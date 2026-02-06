@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     siteName: "Peach State Tech",
     type: "article",
   },
+    robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function AboutLayout({
