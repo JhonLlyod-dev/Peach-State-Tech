@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Peach State Tech | Georgia Tech News, Startups & Innovation",
+  authors: [{ name: "Peach State Tech" }],
   description:
     "Peach State Tech highlights Georgia’s growing tech ecosystem—featuring startups, founders, investors, and innovation across the state.",
   keywords: [
@@ -35,10 +36,18 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Peach State Tech",
     description:
-      "Connecting Georgia’s tech ecosystem with investors, entrepreneurs, and decision-makers.",
-    url: "https://peachstatetech.com",
+      "Positive, informative coverage that helps tech businesses get discovered by the people who matter most.",
+    url: "https://peachstate.tech",
     siteName: "Peach State Tech",
     type: "website",
+    images: [
+      {
+        url: "/happy.webp",
+        width: 1200,
+        height: 630,
+        alt: "Peach State Tech",
+      },
+    ]
   },
   robots: {
     index: true,

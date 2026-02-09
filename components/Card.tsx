@@ -14,6 +14,9 @@ export type newsCard = {
 }
 
 export default function Card(card: newsCard) {
+   
+   
+
   return (
     <div className={` motion-preset-slide-up motion-delay-${card.delay} w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col`}>
       <img
@@ -23,7 +26,7 @@ export default function Card(card: newsCard) {
       />
 
       {/* Card Content */}
-      <div className="p-4 flex flex-col flex-1 justify-between">
+      <div className="p-4 flex flex-col flex-1 justify-between motion-delay">
         
         <div className="flex flex-col gap-2">
           {/* Category / Tag */}

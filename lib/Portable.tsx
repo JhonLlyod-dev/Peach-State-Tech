@@ -6,7 +6,7 @@ export const portableTextComponents = {
       <div className="my-8 flex-center">
         <img
           src={urlFor(value).width(1000).height(600).url()}
-          alt={value.alt || "Blog image"}
+          alt={value.alt || "Blog image from Peach State Tech"}
           className="rounded-lg object-cover"
         />
       </div>
