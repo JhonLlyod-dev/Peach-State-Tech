@@ -182,7 +182,7 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Article Body */}
         <div className="motion-preset-focus motion-delay-200 bg-white flex flex-col rounded-2xl shadow-lg pb-4  mb-8">
-          <img src={urlFor(post.coverImage).url()} alt={post.title} className="w-full h-86 object-cover rounded-t-2xl" />
+          <img src={urlFor(post.coverImage).url()} alt={post.slug} className="w-full h-86 object-cover rounded-t-2xl" />
           <div className="px-6 pt-4 sm:px-10">
             <PortableText value={post.body} components={portableTextComponents} />
           </div>

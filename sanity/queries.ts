@@ -57,7 +57,18 @@ export function getSearchResults(query: string) {
       title,
       publishedAt,
       description,
-      body,
+      body[]{
+        ...,
+        _type == "image" => {
+          ...,
+          asset->{
+            _id,
+            url,
+            originalFilename,
+            metadata
+          }
+        }
+      },
       "id": _id,
       "coverImage": mainImage.asset._ref,    
       "categories": categories[]->{
