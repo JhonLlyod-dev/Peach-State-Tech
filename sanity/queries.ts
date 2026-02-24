@@ -88,7 +88,7 @@ export function getSearchResults(query: string) {
 
  export function sameCategory(category: string, id: string) {
   return sanityClient.fetch(`
-    *[_type == "post" && "${category}" in categories[]->title && _id != "${id}" ] | order(publishedAt desc) [0...2] {
+    *[_type == "post" && "${category}" in categories[]->title && _id != "${id}" ] | order(publishedAt desc) [0...3] {
       title,
       publishedAt,
       description,
