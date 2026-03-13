@@ -11,9 +11,27 @@ export const metadata: Metadata = {
       'Peach State Tech Blog', 'Georgia Peach State',
       'Georgia Peach State Tech', 'Georgia Blog','Georgia Peach State Tech Blog'
   ],
+  openGraph: {
+    title: "Browse Posts | Peach State Tech",
+    description: "Browse Georgia tech startups, news, and resources.",
+    url: "https://peachstate.tech/browse",
+    siteName: "Peach State Tech",
+    type: "website",
+    images: [
+      {
+        url: "/happy.webp",
+        width: 1200,
+        height: 630,
+        alt: "Peach State Tech",
+      },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
+  },
+  alternates: {
+    canonical: 'https://peachstate.tech/browse',
   },
 };
 

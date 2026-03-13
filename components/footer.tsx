@@ -1,5 +1,6 @@
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram,FaPaperPlane } from "react-icons/fa";
 import Link from "next/link";
+import NewsletterForm from "./Newsletter";
 
 export default function Footer() {
   return (
@@ -9,10 +10,7 @@ export default function Footer() {
         
         {/* Company Info */}
         <div className=" motion-preset-fade motion-delay-100  flex flex-col gap-2">
-          <h3 className="text-peach font-bold text-lg">Peach State Tech</h3>
-          <p className="text-gray-400 text-sm max-w-xs">
-            Connecting Georgia’s tech ecosystem with investors, entrepreneurs, and decision-makers.
-          </p>
+          <NewsletterForm/>
         </div>
 
         {/* Navigation Links */}

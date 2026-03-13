@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import {portableTextComponents} from "@/lib/Portable";
 import { newsCard } from "@/components/Card";
 import CopyLinkButton from "@/components/Copy";
+import SubscribeForm from "@/components/SubscribeForm";
 
 
 
@@ -190,19 +191,22 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Author Bio Card */}
         <div className="motion-preset-focus motion-delay-300 bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-4">About the Author</h3>
+          <h3 className="text-xl font-bold text-gray-900 mb-4">Written by</h3>
           <div className="flex items-start gap-4">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-peach to-orange-500 flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
               <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full" />
             </div>
             <div>
-              <p className="font-semibold text-lg text-gray-900 ">{post.author.name}</p>
+              <p className="font-semibold text-lg text-gray-900">{post.author.name}</p>
               <p className="text-gray-600 mb-3">{post.author.role}</p>
-              <p className="text-gray-700 leading-relaxed">
-                {post.author.bio}
-              </p>
+              <p className="text-gray-700 leading-relaxed">{post.author.bio}</p>
             </div>
           </div>
+
+          <hr className="border-gray-100 my-6" />
+
+          <p className="font-semibold text-gray-900 mb-1">Enjoyed this post?</p>
+          <SubscribeForm/>
         </div>
 
         {/* Related Articles Section */}

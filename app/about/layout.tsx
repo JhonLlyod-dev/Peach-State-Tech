@@ -14,13 +14,24 @@ export const metadata: Metadata = {
     title: "About Peach State Tech",
     description:
       "Discover how Peach State Tech supports Georgia’s startups and tech leaders through trusted media coverage.",
-    url: "https://peachstatetech.com/about",
+    url: "https://peachstate.tech/about",
     siteName: "Peach State Tech",
     type: "article",
+    images: [
+      {
+        url: "/happy.webp",
+        width: 1200,
+        height: 630,
+        alt: "Peach State Tech",
+      },
+    ],
   },
     robots: {
     index: true,
     follow: true,
+  },
+    alternates: {
+    canonical: 'https://peachstate.tech/about',
   },
 };
 

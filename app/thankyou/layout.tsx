@@ -11,10 +11,21 @@ export const metadata: Metadata = {
     url: "https://peachstate.tech/thankyou",
     siteName: "Peach State Tech",
     type: "website",
+    images: [
+      {
+        url: "/happy.webp",
+        width: 1200,
+        height: 630,
+        alt: "Peach State Tech",
+      },
+    ]
   },
   robots: {
     index: true,
     follow: true,
+  },
+    alternates: {
+    canonical: 'https://peachstate.tech/thankyou',
   },
 };
 
