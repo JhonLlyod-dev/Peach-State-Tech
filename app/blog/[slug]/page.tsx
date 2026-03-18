@@ -83,13 +83,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${post.title} | Peach State Tech`,
-    description: `${post.title}. ${post.description}`,
+    description: `${post.description}`,
     authors: [{ name: "Peach State Tech" }],
     openGraph: {
       title: post.title,
-      description: `${post.title}. ${post.description}`,
+      description: ` ${post.description}`,
       type: "article",
-      url: `https://peachstate.tech/blog/${post.slug}`,
+      url: `https://www.peachstate.tech/blog/${post.slug}`,
       siteName: `${post.title} | Peach State Tech`,
       images: [
         {
@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ]
     },
     alternates: {
-      canonical: `https://peachstatetech.com/blog/${post.slug}`,
+      canonical: `https://www.peachstatetech.com/blog/${post.slug}`,
     },
     keywords: [
       post.title,

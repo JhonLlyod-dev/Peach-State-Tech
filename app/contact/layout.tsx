@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: "Contact Peach State Tech",
     description:
       "Have questions or ideas? Get in touch with Peach State Tech and be part of our growing tech community.",
-    url: "https://peachstate.tech/contact",
+    url: "https://www.peachstate.tech/contact",
     siteName: "Peach State Tech",
     type: "website",
     images: [
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     follow: true,
   },
     alternates: {
-    canonical: 'https://peachstate.tech/contact',
+    canonical: 'https://www.peachstate.tech/contact',
   },
 };
 

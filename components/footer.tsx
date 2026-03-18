@@ -1,6 +1,7 @@
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram,FaPaperPlane } from "react-icons/fa";
+import { FaFacebookF, FaTiktok , FaLinkedinIn, FaInstagram,FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import NewsletterForm from "./Newsletter";
+import { FaX, FaY, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -32,10 +33,10 @@ export default function Footer() {
         <div className="flex flex-col gap-4 mt-4 md:mt-0 motion-preset-fade motion-delay-400">
           <h4 className="font-semibold text-gray-200">Socials</h4>
           <div className="flex gap-4">
-            <a href="#" className="text-gray-400 hover:text-peach transition"><FaFacebookF /></a>
-            <a href="#" className="text-gray-400 hover:text-peach transition"><FaTwitter /></a>
-            <a href="#" className="text-gray-400 hover:text-peach transition"><FaLinkedinIn /></a>
-            <a href="#" className="text-gray-400 hover:text-peach transition"><FaInstagram /></a>
+            <a href="https://www.facebook.com/profile.php?id=61588566181619" className="text-gray-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
+            <a href="https://x.com/peach_state2026" className="text-gray-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
+            <a href="https://www.tiktok.com/@peach_state_tech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
+            <a href="https://www.youtube.com/@PeachStateTech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
           </div>
         </div>
 

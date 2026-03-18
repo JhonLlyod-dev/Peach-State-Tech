@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     title: "Peach State Tech",
     description:
       "Positive, informative coverage that helps tech businesses get discovered by the people who matter most.",
-    url: "https://peachstate.tech",
+    url: "https://www.peachstate.tech",
     siteName: "Peach State Tech",
     type: "website",
     images: [
@@ -54,10 +54,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://peachstate.tech',
+    canonical: 'https://www.peachstate.tech',
   },
 };
-
 
 export default function RootLayout({
   children,

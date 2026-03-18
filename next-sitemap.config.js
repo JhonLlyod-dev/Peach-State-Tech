@@ -12,7 +12,7 @@ export const sanityClient = createClient({
 })
 
 export default {
-  siteUrl: 'https://peachstate.tech',
+  siteUrl: 'https://www.peachstate.tech',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'weekly',

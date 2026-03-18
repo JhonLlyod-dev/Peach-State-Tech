@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: "Thank You for Reaching Out",
     description:
       "Your message has been received. Thanks for being part of the Peach State Tech community.",
-    url: "https://peachstate.tech/thankyou",
+    url: "https://www.peachstate.tech/thankyou",
     siteName: "Peach State Tech",
     type: "website",
     images: [
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     follow: true,
   },
     alternates: {
-    canonical: 'https://peachstate.tech/thankyou',
+    canonical: 'https://www.peachstate.tech/thankyou',
   },
 };
 

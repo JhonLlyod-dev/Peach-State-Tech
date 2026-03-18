@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Peach State Tech',
-  description: 'Learn how Peach State Tech collects, uses, and protects your personal information. Our Privacy Policy outlines our commitment to your data security and privacy rights.',
+  description: 'Our Privacy Policy outlines our commitment to your data security and privacy rights.',
   keywords: ['privacy policy', 'data protection', 'personal information', 'user privacy', 'data security', 'Peach State Tech'],
   openGraph: {
     title: 'Privacy Policy | Peach State Tech',
     description: 'Our commitment to protecting your privacy and personal information at Peach State Tech.',
-    url: 'https://peachstate.tech/privacy',
+    url: 'https://www.peachstate.tech/privacy',
     siteName: 'Peach State Tech',
     type: 'website',
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://peachstate.tech/privacy',
+    canonical: 'https://www.peachstate.tech/privacy',
   },
 };
 

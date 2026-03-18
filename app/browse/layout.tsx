@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Browse Posts | Peach State Tech",
-  description: "Browse Georgia tech startups, news, and resources.",
+  description: "Browse Georgia tech startups, latest news and resources to discover emerging companies, trends and opportunities in a fast growing tech hub.",
   keywords: [
       'Peach State Tech',
       'Blog', 'Peach State Blog',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Browse Posts | Peach State Tech",
-    description: "Browse Georgia tech startups, news, and resources.",
+    description: "Browse Georgia tech startups, latest news and resources to discover emerging companies, trends and opportunities in a fast growing tech hub.",
     url: "https://peachstate.tech/browse",
     siteName: "Peach State Tech",
     type: "website",

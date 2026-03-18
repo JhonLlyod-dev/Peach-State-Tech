@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service | Peach State Tech',
-  description: 'Read the Terms of Service for Peach State Tech. Learn about our website usage policies, user agreements, and legal guidelines for accessing our tech news and digital insights.',
+  description: 'Learn about our website usage policies, user agreements, and legal guidelines for accessing our tech news and digital insights.',
   keywords: ['terms of service', 'terms and conditions', 'user agreement', 'legal', 'website policies', 'Peach State Tech'],
   openGraph: {
     title: 'Terms of Service | Peach State Tech',
     description: 'Terms of Service and user agreements for Peach State Tech.',
-    url: 'https://peachstate.tech/terms',
+    url: 'https://www.peachstate.tech/terms',
     siteName: 'Peach State Tech',
     type: 'website',
     images: [
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://peachstate.tech/terms',
+    canonical: 'https://www.peachstate.tech/terms',
   },
 };
 
