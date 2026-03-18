@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Browse Posts | Peach State Tech",
     description: "Browse Georgia tech startups, latest news and resources to discover emerging companies, trends and opportunities in a fast growing tech hub.",
-    url: "https://peachstate.tech/browse",
+    url: "https://www.peachstate.tech/browse",
     siteName: "Peach State Tech",
     type: "website",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://peachstate.tech/browse',
+    canonical: 'https://www.peachstate.tech/browse',
   },
 };
 

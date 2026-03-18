@@ -260,8 +260,8 @@ export default function PrivacyPolicy() {
                     </svg>
                     <div>
                       <p className="text-sm text-white/70 mb-1">Website</p>
-                      <a href="https://peachstate.tech" className="font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
-                        https://peachstate.tech
+                      <a href="https://www.peachstate.tech" className="font-semibold hover:underline" target="_blank" rel="noopener noreferrer">
+                        https://www.peachstate.tech
                       </a>
                     </div>
                   </div>

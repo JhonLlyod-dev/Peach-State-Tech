@@ -107,8 +107,8 @@ export default function TermsOfService() {
               </div>
               <p className="text-zinc-700 leading-relaxed text-base sm:text-lg">
                 By accessing or using{" "}
-                <a href="https://peachstate.tech" className="text-peach font-semibold hover:underline break-all">
-                  https://peachstate.tech
+                <a href="https://www.peachstate.tech" className="text-peach font-semibold hover:underline break-all">
+                  https://www.peachstate.tech
                 </a>
                 , you agree to be bound by these Terms of Service. If you do not agree, please discontinue use of the website.
               </p>
