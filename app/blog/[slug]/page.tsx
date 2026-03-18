@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${post.title} | Peach State Tech`,
+    title: `${post.title}`,
     description: `${post.description}`,
     authors: [{ name: "Peach State Tech" }],
     openGraph: {
@@ -118,8 +118,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function BlogPost({ params }: PageProps) {
   const {slug} =  await params;
   const post = await fetchPostBySlug(slug);
-
-
+  
   if (!post) {
     return <PageNotFound/>;
   }
