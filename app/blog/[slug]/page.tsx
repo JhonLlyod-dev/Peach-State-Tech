@@ -101,7 +101,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ]
     },
     alternates: {
-      canonical: `https://www.peachstatetech.tech/blog/${post.slug}`,
+      canonical: `https://www.peachstate.tech/blog/${post.slug}`,
     },
     keywords: [
       post.title,
