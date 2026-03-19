@@ -21,11 +21,8 @@ export const metadata: Metadata = {
     ]
   },
   robots: {
-    index: true,
-    follow: true,
-  },
-    alternates: {
-    canonical: 'https://www.peachstate.tech/thankyou',
+    index: false,
+    follow: false,
   },
 };
 
