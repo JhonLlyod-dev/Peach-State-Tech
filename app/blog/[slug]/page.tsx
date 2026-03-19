@@ -83,11 +83,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${post.title}`,
-    description: `${post.description}`,
+    description: post.description?.slice(0, 155) + "...",
     authors: [{ name: "Peach State Tech" }],
     openGraph: {
       title: post.title,
-      description: ` ${post.description}`,
+      description: post.description?.slice(0, 155) + "...",
       type: "article",
       url: `https://www.peachstate.tech/blog/${post.slug}`,
       siteName: `${post.title} | Peach State Tech`,
