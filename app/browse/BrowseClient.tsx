@@ -60,16 +60,8 @@ export default function BrowseClient() {
   }, [query]);
 
   return (
-    <main className="min-h-[90vh] bg-gradient-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+    <section className="">
       {/* Header */}
-      <div className="mb-10">
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
-          Browse Articles
-        </h1>
-        <p className="text-base sm:text-lg text-gray-600">
-          Discover insights, stories, and ideas from our collection
-        </p>
-      </div>
 
       {/* Search Bar */}
       <div className="mb-10">
@@ -167,6 +159,6 @@ export default function BrowseClient() {
 
     </section>
       )}
-    </main>
+    </section>
   );
 }
