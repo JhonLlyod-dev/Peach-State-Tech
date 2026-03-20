@@ -28,7 +28,7 @@ export function getSearchResults(query: string) {
     : "";
 
   // 👇 limit only when there is NO query
-  const limit = query ? "" : "[0...12]";
+  const limit = query ? "" : "[0...30]";
 
   return sanityClient.fetch(`
     *[_type == "post" ${filter}]
