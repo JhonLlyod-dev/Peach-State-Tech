@@ -17,7 +17,9 @@ export function getNewsCard(){
     `);
 }
 
-export function getSearchResults(query: string) {
+
+
+export function getSearchResults(query: string, start: number, end: number) {
   const filter = query
     ? `&& (
         title match "${query}*" ||
@@ -28,7 +30,7 @@ export function getSearchResults(query: string) {
     : "";
 
   // 👇 limit only when there is NO query
-  const limit = query ? "" : "[0...30]";
+  const limit = `[${start}...${end}]`;
 
   return sanityClient.fetch(`
     *[_type == "post" ${filter}]
@@ -48,7 +50,20 @@ export function getSearchResults(query: string) {
   `);
 }
 
+export function totalSearchResults(query: string) {
+  const filter = query
+    ? `&& (
+        title match "${query}*" ||
+        description match "${query}*" ||
+        author->name match "${query}*" ||
+        categories[].title match "${query}*"
+      )`
+    : "";    
 
+  return sanityClient.fetch(`
+    *[_type == "post" ${filter}]
+  `);
+}
 
  export function getArticle(slug: string) {
 
@@ -99,6 +114,14 @@ export function getSearchResults(query: string) {
         description
       },
       "slug": slug.current
+    }
+  `);
+ }
+
+ export function getAllCategory() {
+  return sanityClient.fetch(`
+    *[_type == "category" ]{
+      _id,title
     }
   `);
  }

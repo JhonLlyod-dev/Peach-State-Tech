@@ -5,7 +5,7 @@ import Card from "@/components/Card";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { getSearchResults } from "@/sanity/queries";
+import { getSearchResults, totalSearchResults } from "@/sanity/queries";
 import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
 import {ChevronLeft,ChevronRight} from "lucide-react";
@@ -18,30 +18,24 @@ export default function BrowseClient() {
 
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState(query || '');
-  const [posts, setPosts] = useState<newsCard[]>([]);
 
   const router = useRouter();
 
   const handleSearch = () => {
     const trimmedQuery = searchQuery.trim();
-    if (trimmedQuery) {
       router.push(`/browse?q=${encodeURIComponent(trimmedQuery)}`);
-    }
   };
-
-
 
   // Pagination logic
 
+  const [totalResults, setTotalResults] = useState(0);
+  const [currentPosts, setCurrentPosts] = useState<newsCard[]>([]);
+
   const [page, setPage] = useState(1);
   const postsPerPage = 6;
-  const indexOfLastPost = page * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const totalPages = Math.ceil(totalResults / postsPerPage);
   
-  const totalPages = Math.ceil(posts.length / postsPerPage);
-
-
   function pageHandler(condition: string){
     if(condition === "next"){
       setPage(page + 1);
@@ -51,17 +45,27 @@ export default function BrowseClient() {
   }
 
   useEffect(() => {
-    setLoading(true);
     setPage(1);
-    getSearchResults(query || '').then((data) => {
-      setPosts(data);
+  }, [query]);
+
+  useEffect(() => {
+    setLoading(true);
+    let indexOfLastPost = page * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+
+    totalSearchResults(query || '').then((data) => {
+      setTotalResults(data.length);
+    });
+
+    getSearchResults(query || '', indexOfFirstPost, indexOfLastPost).then((data) => {
+      setCurrentPosts(data);
       setLoading(false);
     });
-  }, [query]);
+
+  }, [query,page]);
 
   return (
     <section className="">
-      {/* Header */}
 
       {/* Search Bar */}
       <div className="mb-10">
@@ -86,7 +90,7 @@ export default function BrowseClient() {
           {searchQuery ? `Results for "${searchQuery}"` : 'All Articles'}
         </h2>
         <p className="text-gray-600 text-sm mt-1">
-          {posts.length} {posts.length === 1 ? 'article' : 'articles'}
+          {totalResults} {totalResults === 1 ? 'article' : 'articles'}
         </p>
       </div>
 
@@ -95,7 +99,7 @@ export default function BrowseClient() {
         <div className="flex items-center justify-center min-h-[40vh]">
           <Load />
         </div>
-      ) : posts.length > 0 ? (
+      ) : currentPosts.length > 0 ? (
         <div className={`flex flex-col gap4`}>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {currentPosts.map((post, index) => {
