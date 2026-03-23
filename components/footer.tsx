@@ -33,9 +33,9 @@ export default function Footer() {
         <div className="flex flex-col gap-4 mt-4 md:mt-0 motion-preset-fade motion-delay-400">
           <h4 className="font-semibold text-gray-200">Socials</h4>
           <div className="flex gap-4">
-            <a href="https://www.facebook.com/profile.php?id=61588566181619" className="text-gray-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
-            <a href="https://x.com/peach_state2026" className="text-gray-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
-            <a href="https://www.tiktok.com/@peach_state_tech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
+            <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/profile.php?id=61588566181619" className="text-gray-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
+            <a rel="noopener noreferrer nofollow" href="https://x.com/peach_state2026" className="text-gray-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
+            <a rel="noopener noreferrer nofollow" href="https://www.tiktok.com/@peach_state_tech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
             <a href="https://www.youtube.com/@PeachStateTech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
           </div>
         </div>

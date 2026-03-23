@@ -1,68 +1,65 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import Card from "@/components/Card";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
+import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { getSearchResults, totalSearchResults } from "@/sanity/queries";
 import { newsCard } from "@/components/Card";
 import Load from "@/components/Load";
-import {ChevronLeft,ChevronRight} from "lucide-react";
 import Image from "next/image";
-import { FileSearch, ArrowLeft } from "lucide-react";
 
 export default function BrowseClient() {
   const searchParams = useSearchParams();
-  const query = searchParams?.get("q");
-
-  const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(query || '');
-
   const router = useRouter();
 
-  const handleSearch = () => {
-    const trimmedQuery = searchQuery.trim();
-      router.push(`/browse?q=${encodeURIComponent(trimmedQuery)}`);
-  };
+  // Single source of truth — always from URL
+  const query = searchParams?.get("q") ?? "";
+  const page = Math.max(1, parseInt(searchParams?.get("page") ?? "1", 10));
 
-  // Pagination logic
-
+  const [searchInput, setSearchInput] = useState(query);
+  const [loading, setLoading] = useState(true);
   const [totalResults, setTotalResults] = useState(0);
   const [currentPosts, setCurrentPosts] = useState<newsCard[]>([]);
 
-  const [page, setPage] = useState(1);
   const postsPerPage = 6;
-
   const totalPages = Math.ceil(totalResults / postsPerPage);
-  
-  function pageHandler(condition: string){
-    if(condition === "next"){
-      setPage(page + 1);
-    }else if(condition === "prev"){
-      setPage(page - 1);
-    }
-  }
 
+  // Sync input box when URL query changes (e.g. browser back/forward)
   useEffect(() => {
-    setPage(1);
+    setSearchInput(query);
   }, [query]);
 
+  // Fetch whenever URL-derived query or page changes
   useEffect(() => {
     setLoading(true);
-    let indexOfLastPost = page * postsPerPage;
-    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const start = (page - 1) * postsPerPage;
+    const end = start + postsPerPage;
 
-    totalSearchResults(query || '').then((data) => {
-      setTotalResults(data.length);
-    });
-
-    getSearchResults(query || '', indexOfFirstPost, indexOfLastPost).then((data) => {
-      setCurrentPosts(data);
+    Promise.all([
+      totalSearchResults(query),
+      getSearchResults(query, start, end),
+    ]).then(([total, posts]) => {
+      setTotalResults(total.length);
+      setCurrentPosts(posts);
       setLoading(false);
     });
+  }, [query, page]);
 
-  }, [query,page]);
+  const buildUrl = (newQuery: string, newPage: number) => {
+    const params = new URLSearchParams();
+    if (newQuery) params.set("q", newQuery);
+    if (newPage > 1) params.set("page", String(newPage));
+    return `/browse${params.size ? `?${params.toString()}` : ""}`;
+  };
+
+  const handleSearch = () => {
+    router.push(buildUrl(searchInput.trim(), 1));
+  };
+
+  const handlePageChange = (newPage: number) => {
+    router.push(buildUrl(query, newPage));
+  };
 
   return (
     <section className="">
@@ -72,8 +69,8 @@ export default function BrowseClient() {
         <div className="border text-foreground flex items-center border-l-4 border-l-peach gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm w-full sm:w-[420px] md:w-[520px] lg:w-[640px]">
           <input
             type="text"
-            onChange={(e) => setSearchQuery(e.target.value)}
-            value={searchQuery}
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             className="outline-none text-foreground transition-all duration-300 w-full bg-transparent"
             placeholder="Search Author, Company, or Keyword..."
@@ -87,10 +84,10 @@ export default function BrowseClient() {
       {/* Results Header */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-900">
-          {searchQuery ? `Results for "${searchQuery}"` : 'All Articles'}
+          {query ? `Results for "${query}"` : "All Articles"}
         </h2>
         <p className="text-gray-600 text-sm mt-1">
-          {totalResults} {totalResults === 1 ? 'article' : 'articles'}
+          {totalResults} {totalResults === 1 ? "article" : "articles"}
         </p>
       </div>
 
@@ -100,68 +97,72 @@ export default function BrowseClient() {
           <Load />
         </div>
       ) : currentPosts.length > 0 ? (
-        <div className={`flex flex-col gap4`}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {currentPosts.map((post, index) => {
-                const firstCategory = Array.isArray(post.categories) && post.categories.length > 0
-                  ? post.categories[0].title || ''
-                  : '';
+        <div className="flex flex-col gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {currentPosts.map((post, index) => {
+              const firstCategory =
+                Array.isArray(post.categories) && post.categories.length > 0
+                  ? post.categories[0].title || ""
+                  : "";
 
-                const cardData: newsCard = {
-                  title: post.title || '',
-                  description: post.description || '',
-                  coverImage: post.coverImage || '',
-                  categories: firstCategory,
-                  slug: post.slug || '',
-                  publishedAt: post.publishedAt || '',
-                  id: post.id || '',
-                  delay: (index + 1) * 100,
-                };
+              const cardData: newsCard = {
+                title: post.title || "",
+                description: post.description || "",
+                coverImage: post.coverImage || "",
+                categories: firstCategory,
+                slug: post.slug || "",
+                publishedAt: post.publishedAt || "",
+                id: post.id || "",
+                delay: (index + 1) * 100,
+              };
 
-                return <Card key={post.slug || post.id} {...cardData} />;
-              })}
-            </div>
+              return <Card key={post.slug || post.id} {...cardData} />;
+            })}
+          </div>
 
-            <div className="flex-center gap-2  mt-4">
-
-              <button disabled={page === 1} onClick={() => pageHandler("prev") } className="pagination">
-                <ChevronLeft size={18} className="" />
+          {totalPages > 1 && (
+            <div className="flex-center gap-2 mt-4">
+              <button
+                disabled={page === 1}
+                onClick={() => handlePageChange(page - 1)}
+                className="pagination"
+              >
+                <ChevronLeft size={18} />
               </button>
 
               <span className="text-gray-600 font-semibold">
                 {page} of {totalPages}
               </span>
 
-              <button disabled={page === totalPages} onClick={() => pageHandler("next") }  className="pagination">
+              <button
+                disabled={page === totalPages}
+                onClick={() => handlePageChange(page + 1)}
+                className="pagination"
+              >
                 <ChevronRight size={18} />
               </button>
-
             </div>
+          )}
         </div>
-        
       ) : (
-    <section className="min-h-[20vh] flex flex-col items-center justify-center px-4 text-center gap-4 sm:gap-5">
-      
-      <div className="flex-center">
-        <h2 className="motion-preset-blur-down-lg delay-600 text-peach font-black tracking-wide text-2xl sm:text-3xl md:text-4xl">
-          Not Found
-        </h2>
-
-        <Image
-          src="/find.webp" 
-          alt="Confused animated character with no articles available"
-          width={160}
-          height={160}
-          className=" motion-preset-blur-left-lg delay-200 w-24 sm:w-28 md:w-36"
-          priority
-        />
-      </div>
-
-      <p className="motion-preset-blur-down-lg delay-800 text-gray-600 text-sm sm:text-base max-w-xs sm:max-w-md">
-        Hmm… we couldn’t find any articles matching your search. Try another one!
-      </p>
-
-    </section>
+        <section className="min-h-[20vh] flex flex-col items-center justify-center px-4 text-center gap-4 sm:gap-5">
+          <div className="flex-center">
+            <h2 className="motion-preset-blur-down-lg delay-600 text-peach font-black tracking-wide text-2xl sm:text-3xl md:text-4xl">
+              Not Found
+            </h2>
+            <Image
+              src="/find.webp"
+              alt="Confused animated character with no articles available"
+              width={160}
+              height={160}
+              className="motion-preset-blur-left-lg delay-200 w-24 sm:w-28 md:w-36"
+              priority
+            />
+          </div>
+          <p className="motion-preset-blur-down-lg delay-800 text-gray-600 text-sm sm:text-base max-w-xs sm:max-w-md">
+            Hmm… we couldn't find any articles matching your search. Try another one!
+          </p>
+        </section>
       )}
     </section>
   );
