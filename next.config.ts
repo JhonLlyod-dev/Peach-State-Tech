@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
             value: "peachstate.tech", // non-www
           },
         ],
+        missing: [
+          { type: "query", key: "qb-b" },
+          { type: "query", key: "qb-p" },
+        ],
         destination: "https://www.peachstate.tech/:path*",
         permanent: true,
       },
