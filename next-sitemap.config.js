@@ -17,7 +17,7 @@ export default {
   sitemapSize: 5000,
   changefreq: 'weekly',
   priority: 0.7,
-  exclude: ['/thankyou', '/thank-you/**'],
+  exclude: ['/thankyou', '/thank-you/**', '/404', '/404/**', '/410', '/410/**'],
 
   additionalPaths: async () => {
     const posts = await sanityClient.fetch(`
