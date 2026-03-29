@@ -45,13 +45,13 @@ export default function Home() {
           </h1>
 
           <h2 className="font-extralight text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl">
-            Positive, informative coverage that helps tech businesses get discovered by the people who matter most.
+            In-depth coverage of Atlanta startups, Georgia tech companies, and the innovators shaping the state's digital economy.
           </h2>
         </div>
 
         <div className="w-full motion-preset-fade-md flex-center flex-col gap-4">
-          <h3 className="font-extralight text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl italic">
-            " Discover the stories behind Georgia’s fastest-growing companies. "
+          <h3 className="font-extralight text-xs sm:text-sm md:text-base lg:text-lg text-center italic w-full">
+             "Meet the founders, products, and companies defining Georgia's tech future."
           </h3>
           
           <div className="
@@ -80,7 +80,7 @@ export default function Home() {
                 duration-300
                 w-full
               "
-              placeholder="Search Author, Company, or Keyword..."
+              placeholder="Search startups, founders, or Georgia tech topics..."
             />
             <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
                 <Search size={16} />
@@ -93,7 +93,7 @@ export default function Home() {
     </div>
 
     <div className=" flex flex-col py-4 md:py-8 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding">
-      <h2 className="font-bold  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">Latest</h2>
+      <h2 className="font-bold  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">Latest Georgia Tech News</h2>
 
       <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
