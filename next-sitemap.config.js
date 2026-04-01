@@ -23,9 +23,9 @@ export default {
     const posts = await sanityClient.fetch(`
       *[_type == "post" && defined(slug.current)]{
         "slug": slug.current,
-        _updatedAtad
+        _updatedAt
       }
-    `);
+    `); 
 
     return posts.map((post) => ({
       loc: `/blog/${post.slug}`,

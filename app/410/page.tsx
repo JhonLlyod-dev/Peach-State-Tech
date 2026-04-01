@@ -3,6 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Trash2, ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "410 Gone | Peach State Tech",
+  description: "This page is gone for good — it's been permanently removed and won't be coming back."
+};
 
 export default function PageGone() {
   return (
