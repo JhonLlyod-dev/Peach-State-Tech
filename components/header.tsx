@@ -44,6 +44,9 @@ export default function Header() {
                 <li className=" px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
                   <Link href="/">Latest</Link>
                 </li>
+                <li className=" px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
+                  <Link href="/blog">Blogs</Link>
+                </li>
                 <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
                   <Link href="/browse?">Browse</Link>
                 </li>
@@ -62,9 +65,12 @@ export default function Header() {
             <Link href="/">Latest</Link>
           </li>
           <li className="motion-preset-slide-down-right motion-delay-200 nav-link">
-            <Link href="/browse?">Browse</Link>
+            <Link href="/blog">Blogs</Link>
           </li>
           <li className="motion-preset-slide-down-right motion-delay-300 nav-link">
+            <Link href="/browse?">Browse</Link>
+          </li>
+          <li className="motion-preset-slide-down-right motion-delay-400 nav-link">
             <Link href="/about">About</Link>
           </li>
         </ul>

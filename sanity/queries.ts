@@ -126,5 +126,22 @@ export function totalSearchResults(query: string) {
   `);
  }
 
+ export function getCategory(category: string) {
+  return sanityClient.fetch(`
+    *[_type == "post" && "${category}" in categories[]->title] | order(publishedAt desc) {
+      title,
+      publishedAt,
+      description,
+      "id": _id,
+      "coverImage": mainImage.asset._ref,
+      "categories": categories[]->{
+        title,
+        description
+      },
+      "slug": slug.current
+    }
+  `);
+ }
+
 
 

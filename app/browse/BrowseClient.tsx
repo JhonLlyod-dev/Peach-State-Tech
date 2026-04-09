@@ -13,7 +13,6 @@ export default function BrowseClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Single source of truth — always from URL
   const query = searchParams?.get("q") ?? "";
   const page = Math.max(1, parseInt(searchParams?.get("page") ?? "1", 10));
 
@@ -25,12 +24,10 @@ export default function BrowseClient() {
   const postsPerPage = 6;
   const totalPages = Math.ceil(totalResults / postsPerPage);
 
-  // Sync input box when URL query changes (e.g. browser back/forward)
   useEffect(() => {
     setSearchInput(query);
   }, [query]);
 
-  // Fetch whenever URL-derived query or page changes
   useEffect(() => {
     setLoading(true);
     const start = (page - 1) * postsPerPage;
@@ -120,8 +117,10 @@ export default function BrowseClient() {
             })}
           </div>
 
+          {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex-center gap-2 mt-4">
+              {/* Prev */}
               <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
@@ -130,10 +129,49 @@ export default function BrowseClient() {
                 <ChevronLeft size={18} />
               </button>
 
-              <span className="text-gray-600 font-semibold">
-                {page} of {totalPages}
-              </span>
+              {/* Page Numbers */}
+              {(() => {
+                const pages: (number | 'ellipsis-left' | 'ellipsis-right')[] = [];
 
+                if (totalPages <= 10) {
+                  for (let i = 1; i <= totalPages; i++) pages.push(i);
+                } else {
+                  pages.push(1);
+
+                  if (page > 4) pages.push('ellipsis-left');
+
+                  const start = Math.max(2, page - 2);
+                  const end = Math.min(totalPages - 1, page + 2);
+                  for (let i = start; i <= end; i++) pages.push(i);
+
+                  if (page < totalPages - 3) pages.push('ellipsis-right');
+
+                  pages.push(totalPages);
+                }
+
+                return pages.map((p) => {
+                  if (p === 'ellipsis-left' || p === 'ellipsis-right') {
+                    return (
+                      <span key={p} className="px-1 text-gray-400 select-none">
+                        …
+                      </span>
+                    );
+                  }
+                  return (
+                    <button
+                      key={p}
+                      onClick={() => handlePageChange(p)}
+                      className={`px-2 cursor-pointer  ${
+                        page === p ? 'border rounded text-white bg-peach' : ''
+                      }`}
+                    >
+                      {p}
+                    </button>
+                  );
+                });
+              })()}
+
+              {/* Next */}
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
