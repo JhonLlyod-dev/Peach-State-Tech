@@ -10,12 +10,8 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/thankyou',
-          '/thank-you',
           '/404',
           '/410',
-          '/api/',
-          '/admin/',
-          '/dashboard/',
         ],
       },
     ],
