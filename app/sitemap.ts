@@ -80,7 +80,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const pageCount = posts.length / 6;
+  const pageCount = Math.ceil(posts.length / 6);
   
   for (let i = 1; i <= pageCount; i++) {
     if(i > 1){
