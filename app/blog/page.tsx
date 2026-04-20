@@ -8,14 +8,37 @@ import Load from "@/components/Load"
 export const metadata: Metadata = {
   title: "Blog | Browse Articles by Category",
   description:
-    "Explore our full collection of articles organized by category. From Technology and Science to Culture and Lifestyle — find in-depth reads, expert insights, and the latest news across every topic.",
+    "Browse articles by category with insights, trends, and the latest updates across a wide range of topics.",
+  keywords: [
+    "blog",
+    "articles",
+    "technology",
+    "science",
+    "culture",
+    "lifestyle",
+    "news",
+    "trends",
+  ],
+  authors: [{ name: "Your Brand Name" }],
+  alternates: {
+    canonical: "https://www.peachstate.tech/blog",
+  },
   openGraph: {
     title: "Blog | Browse Articles by Category",
     description:
-      "Explore our full collection of articles organized by category. From Technology and Science to Culture and Lifestyle — find in-depth reads, expert insights, and the latest news across every topic.",
+      "Browse articles by category with insights, trends, and the latest updates across a wide range of topics.",
     type: "website",
+    url: "https://www.peachstate.tech/blog",
+    locale: "en_US",
+    siteName: "Peach State Tech",
   },
-}
+  twitter: {
+    card: "summary",
+    title: "Blog | Browse Articles by Category",
+    description:
+      "Browse articles by category with insights, trends, and the latest updates across a wide range of topics.",
+  },
+};
 
 export default function BlogPage() {
   return (
@@ -26,13 +49,7 @@ export default function BlogPage() {
           Browse Articles by Category
         </h1>
         <p className="text-gray-600 max-w-5xl text-base leading-relaxed">
-          Discover a wide range of articles across every topic that matters to
-          you. Whether you are interested in the latest breakthroughs in
-          Technology, thought-provoking pieces on Science, cultural commentary,
-          or practical Lifestyle guides — our blog covers it all. Use the
-          category filters below to explore articles curated around the subjects
-          you care about most. New content is added regularly, so there is always
-          something fresh to read.
+          Browse articles by category with insights, trends, and the latest updates across a wide range of topics.
         </p>
       </section>
 
