@@ -80,18 +80,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }))
 
-  const pageCount = Math.ceil(posts.length / 6);
-  
-  for (let i = 1; i <= pageCount; i++) {
-    if(i > 1){
-      blogPages.push({
-        url: `${baseUrl}/browse?page=${i}`,
-        lastModified: new Date(),
-        changeFrequency: 'weekly',
-        priority: 0.7,
-      })
-    }
-  }
-
   return [...staticPages, ...blogPages]
 }
