@@ -28,7 +28,7 @@ export default function Header() {
       <Link href="/">
         <div className="flex-center flex-col">
           <img src="/logo1.png" alt="Company Logo" className="w-10 motion-preset-pop motion-delay-100 hover-link" />
-          <h3 className="text-sm font-bold motion-preset-pop motion-delay-200">Peach State</h3>
+          <span className="text-sm font-bold motion-preset-pop motion-delay-200">Peach State</span>
         </div>
       </Link>
 
