@@ -1,135 +1,90 @@
-'use client';
-
 import { Search } from "lucide-react";
 import Card from "@/components/Card";
-import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { newsCard } from "@/components/Card";
-import Load from "@/components/Load";
 import { getNewsCard } from "@/sanity/queries";
 import Link from "next/link";
+import SearchBar from "@/components/SearchBar";
 
-
-export default function Home() {
-  const router = useRouter();
-
-  const [searchQuery, setSearchQuery] = useState('');
-    const handleSearch = () => {
-    if (searchQuery) {
-      router.push(`/browse?q=${searchQuery}`);
-    }
-  };
-
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    getNewsCard().then((data) => {
-      setPosts(data);
-    });
-  }, []);
-
-
+export default async function Home() {
+  const posts = await getNewsCard();
 
   return (
-    <main className=" flex flex-col min-h-screen bg-zinc-50 font-sans ">
-    <div className="  w-full h-88 sm:h-112 md:h-136 overflow-hidden bg-foreground px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32  relative">
-      <img src="/background.jpg" alt="peach-tech-background" className="h-full w-full object-cover" />
-      <div className="absolute flex flex-col justify-between top-0 left-0 right-0 bottom-0 bg-foreground/30 backdrop-blur-xs px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding py-8 sm:py-12 md:py-16lg:py-20 text-white">
-        <div className="flex flex-col gap-2 motion-preset-fade-sm">
-          <h3 className="font-bold text-peach text-sm sm:text-base md:text-lg">
+    <main className="flex flex-col min-h-screen bg-zinc-50 font-sans">
+      {/* Hero */}
+      <section className="relative w-full h-80 sm:h-96 md:h-112 overflow-hidden bg-foreground">
+        <img
+          src="/background.webp"
+          alt="Atlanta skyline representing Georgia's growing tech ecosystem"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-foreground/65 backdrop-blur-[2px] px-4 sm:px-8 md:px-16 text-white text-center">
+          <p className="font-extrabold motion-preset-fade-lg motion-delay-100 tracking-widest text-gradient-peach text-xs sm:text-sm uppercase">
             Peach State Tech
-          </h3>
+          </p>
 
-          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
-            Stay Ahead of Georgia Tech Trends
+          <h1 className="font-bold text-white motion-preset-fade-lg motion-delay-200 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl">
+            Georgia's Tech, Startup &amp; Innovations
           </h1>
 
-          <h2 className="font-extralight text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl">
-            In-depth coverage of Atlanta startups, Georgia tech companies, and the innovators shaping the state's digital economy.
+          <p className="font-light motion-preset-fade-lg motion-delay-300 text-sm sm:text-base md:text-lg max-w-2xl text-zinc-200">
+            AI breakthroughs, startup funding, and the founders shaping Georgia's tech economy.
+          </p>
+
+          <SearchBar />
+        </div>
+      </section>
+
+      {/* News grid */}
+      <section className="flex flex-col py-10 md:py-14 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="font-bold text-gradient-peach text-xl sm:text-2xl ">
+            Latest Georgia Tech &amp; Startup News
           </h2>
-        </div>
-
-        <div className="w-full motion-preset-fade-md flex-center flex-col gap-4">
-          <h3 className="font-extralight text-xs sm:text-sm md:text-base lg:text-lg text-center italic w-full">
-             "Meet the founders, products, and companies defining Georgia's tech future."
-          </h3>
-          
-          <div className="
-            border
-            text-foreground
-            flex-center
-            border-l-4
-            bg-zinc-50
-            border-l-peach
-            gap-1
-            border-gray-100
-            shadow-sm
-            p-2 px-4
-            rounded-sm
-            w-full sm:w-[420px] md:w-[520px] lg:w-[640px]
-          ">
-            <input
-              type="text"
-              onChange={(e)=> setSearchQuery(e.target.value)}
-              value={searchQuery}
-              onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-              className="
-                outline-none
-                text-foreground
-                transition-all
-                duration-300
-                w-full
-              "
-              placeholder="Search startups, founders, or Georgia tech topics..."
-            />
-            <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
-                <Search size={16} />
-            </button>
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-
-    <div className=" flex flex-col py-4 md:py-8 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding">
-      <h2 className="font-bold  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">Latest Georgia Tech News</h2>
-
-      <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-
-        {posts.length === 0 && 
-          <span className="mt-12 col-span-1 sm:col-span-2 md:col-span-3 flex-center  text-gray-400  ">We’re working on new articles. Stay tuned!</span>
-        }
-
-        {posts.map((post: any, index) => {
-          const firstCategory =
-            Array.isArray(post.categories) && post.categories.length > 0
-              ? post.categories[0].title || ''
-              : '';
-
-          const cardData: newsCard = {
-            title: post.title || '',
-            description: post.description || '',      // if your post has no description
-            coverImage: post.coverImage || '',       // string from your data
-            categories: firstCategory,
-            slug: post.slug || '',
-            publishedAt: post.publishedAt || '',
-            id: post.id || '',
-            delay: (index+1) * 200,
-          };
-
-          return <Card key={post.slug || post.title} {...cardData} />;
-        })}
-
-      </div>
-      { posts.length > 0 &&
-        <button className=" cursor-pointer font-bold mt-8 self-center hover:bg-peach hover:text-white transition duration-100 ease-in  text-peach py-1 px-2 border-2 border-peach w-fit rounded-sm">
-          <Link href="/browse?">
-            Browse More
+          <Link
+            href="/browse"
+            className="hidden sm:inline-flex font-semibold text-sm text-gradient-peach hover:text-gradient-violet transition-colors"
+          >
+            View all →
           </Link>
-        </button>
-      }
-    </div>
+        </div>
+
+        {posts.length === 0 ? (
+          <p className="mt-12 text-center text-zinc-400">
+            We're working on new articles. Stay tuned!
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {posts.map((post: any, index: number) => {
+              const firstCategory =
+                Array.isArray(post.categories) && post.categories.length > 0
+                  ? post.categories[0].title || ""
+                  : "";
+
+              const cardData: newsCard = {
+                title: post.title || "",
+                description: post.description || "",
+                coverImage: post.coverImage || "",
+                categories: firstCategory,
+                slug: post.slug || "",
+                publishedAt: post.publishedAt || "",
+                id: post.id || "",
+                delay: (index + 1) * 200,
+              };
+
+              return <Card key={post.slug || post.title} {...cardData} />;
+            })}
+          </div>
+        )}
+
+        {posts.length > 0 && (
+          <Link
+            href="/browse"
+            className="mt-10 self-center font-semibold text-sm sm:text-base text-peach border-2 border-peach rounded-full px-6 py-2 hover:bg-gradient-peach hover:text-white active:bg-gradient-violet active:border-violet transition-colors duration-200"
+          >
+            Browse more stories
+          </Link>
+        )}
+      </section>
     </main>
   );
 }

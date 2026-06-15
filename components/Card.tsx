@@ -18,7 +18,7 @@ export default function Card(card: newsCard) {
    
 
   return (
-    <div className={` motion-preset-slide-up motion-delay-${card.delay} w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col`}>
+    <div className={` motion-preset-slide-up w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col`}>
       <img
         src={urlFor(card.coverImage).url()}
         alt={card.title}
@@ -30,7 +30,7 @@ export default function Card(card: newsCard) {
         
         <div className="flex flex-col gap-2">
           {/* Category / Tag */}
-          <span className="text-sm text-peach font-semibold uppercase">{card.categories}</span>
+          <span className="text-sm text-peach font-bold tracking-wide uppercase">{card.categories}</span>
 
           {/* Title */}
           <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 line-clamp-2">
@@ -48,7 +48,7 @@ export default function Card(card: newsCard) {
           <span>{formatDate(card.publishedAt)}</span>
           <Link
             href={`/blog/${card.slug}`}
-            className="text-peach font-semibold hover:underline"
+            className="text-peach font-semibold hover:underline hover:text-violet transition ease-in"
           >
             Read More →
           </Link>

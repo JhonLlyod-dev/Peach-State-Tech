@@ -29,14 +29,14 @@ export default function ThankYou() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/browse/?"
-              className="inline-flex items-center justify-center px-6 py-3 bg-peach text-white font-semibold rounded-lg hover:bg-peach/80 transition duration-200"
+              className="inline-flex items-center justify-center px-6 py-3 bg-gradient-peach text-white font-semibold rounded-lg hover:bg-peach/80 transition duration-200"
             >
               View Latest Articles
             </Link>
 
             <Link 
               href="/"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-peach text-peach font-semibold rounded-lg hover:bg-peach hover:text-white transition duration-200"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-peach text-peach font-semibold rounded-lg hover:bg-gradient-peach hover:text-white transition duration-200"
             >
               Go Back Home
             </Link>

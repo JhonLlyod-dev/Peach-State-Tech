@@ -12,13 +12,13 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-zinc-900/20" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 pb-16 w-full">
-          <p className="motion-preset-slide-right motion-delay-200 text-peach font-bold text-sm sm:text-base uppercase tracking-widest mb-4">
+          <p className="motion-preset-slide-right motion-delay-200 text-gradient-peach font-bold text-sm sm:text-base uppercase tracking-widest mb-4">
             About Peach State Tech
           </p>
           <h1 className="motion-preset-slide-up motion-delay-300 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white mb-6">
             Georgia's Tech&nbsp;Story
             <br />
-            <span className="text-peach">Starts Here.</span>
+            <span className="text-gradient-peach">Starts Here.</span>
           </h1>
           <p className="motion-preset-fade motion-delay-500 text-zinc-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl">
             Peach State Tech is Georgia's dedicated media and marketing platform —
@@ -33,8 +33,8 @@ export default function About() {
       <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div className="motion-preset-slide-right motion-delay-200 space-y-6">
           <div className="inline-flex items-center gap-3">
-            <span className="w-10 h-px bg-peach" />
-            <span className="text-peach font-bold text-xs uppercase tracking-widest">
+            <span className="w-10 h-px bg-gradient-peach" />
+            <span className="text-gradient-peach font-bold text-xs uppercase tracking-widest">
               Our Mission
             </span>
           </div>
@@ -74,20 +74,20 @@ export default function About() {
               alt="Modern open tech office workspace"
               className="w-full h-80 lg:h-96 object-cover rounded-sm shadow-2xl"
             />
-            <div className="absolute -top-3 -right-3 w-16 h-16 border-t-4 border-r-4 border-peach rounded-tr-sm" />
+            <div className="absolute -top-3 -right-3 w-16 h-16 border-t-4 border-r-4 border-violet rounded-tr-sm" />
           </div>
 
           <div className="motion-preset-slide-left motion-delay-300 order-1 lg:order-2 space-y-6">
             <div className="inline-flex items-center gap-3">
-              <span className="w-10 h-px bg-peach" />
-              <span className="text-peach font-bold text-xs uppercase tracking-widest">
+              <span className="w-10 h-px bg-gradient-violet" />
+              <span className="text-gradient-violet font-bold text-xs uppercase tracking-widest">
                 What We Do
               </span>
             </div>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight">
               Coverage That
               <br />
-              <span className="text-peach">Gets You Seen</span>
+              <span className="text-gradient-violet">Gets You Seen</span>
             </h2>
             <p className="text-zinc-400 text-base sm:text-lg leading-relaxed">
               We publish in-depth features, founder interviews, and industry
@@ -134,8 +134,8 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/85 via-zinc-900/50 to-transparent flex items-center px-8 sm:px-12">
             <div>
               <div className="inline-flex items-center gap-3 mb-3">
-                <span className="w-6 h-px bg-peach" />
-                <span className="text-peach font-bold text-xs uppercase tracking-widest">
+                <span className="w-6 h-px bg-gradient-peach" />
+                <span className="text-gradient-peach font-bold text-xs uppercase tracking-widest">
                   Who It's For
                 </span>
               </div>
@@ -151,26 +151,26 @@ export default function About() {
             {
               delay: "motion-delay-200",
               icon: "💼",
-              title: "Investors",
-              desc: "Discover Georgia's most promising startups and emerging sectors before they hit the national radar.",
+              title: "Business Leaders",
+              desc: "Stay updated on Georgia startups, business innovation, funding rounds, and the companies driving economic growth across the state.",
             },
             {
               delay: "motion-delay-350",
               icon: "🚀",
               title: "Entrepreneurs",
-              desc: "Get your company in front of the right people — investors, customers, and collaborators across Georgia.",
+              desc: "Discover startup success stories, Georgia tech trends, investment opportunities, and resources to help grow your business.",
             },
             {
               delay: "motion-delay-500",
-              icon: "🏛️",
-              title: "Public Officials",
-              desc: "Stay informed on the tech companies and trends shaping Georgia's economy and workforce.",
+              icon: "📰",
+              title: "Georgia Residents",
+              desc: "Follow the latest Georgia technology news, local business developments, job creation, and innovations impacting your community.",
             },
             {
               delay: "motion-delay-[650ms]",
-              icon: "🤝",
-              title: "Professionals",
-              desc: "Keep a pulse on industry developments, local tech events, and companies hiring across the state.",
+              icon: "💡",
+              title: "Students & Professionals",
+              desc: "Explore career opportunities, industry insights, workforce trends, and emerging technologies shaping Georgia's future.",
             },
           ].map(({ delay, icon, title, desc }) => (
             <div
@@ -182,7 +182,7 @@ export default function About() {
               `}
             >
               <div className="text-2xl mb-4">{icon}</div>
-              <h3 className="font-black text-zinc-900 text-lg mb-2 group-hover:text-peach transition-colors duration-200">
+              <h3 className="font-black text-zinc-900 text-lg mb-2 group-hover:text-gradient-peach transition-colors duration-200">
                 {title}
               </h3>
               <p className="text-zinc-500 text-sm leading-relaxed">{desc}</p>
@@ -199,7 +199,7 @@ export default function About() {
           alt="Founders shaking hands at a Georgia tech event"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-peach/90" />
+        <div className="absolute inset-0 bg-linear-to-r from-peach/90 to-peach-light/90" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
@@ -212,7 +212,7 @@ export default function About() {
           </div>
           <a
             href="/contact"
-            className="flex-shrink-0 bg-white text-peach font-bold text-sm px-6 py-3 rounded-sm hover:bg-zinc-100 transition-colors duration-150"
+            className="shrink-0 bg-white text-peach font-bold text-sm px-6 py-3 rounded-sm hover:bg-zinc-100 transition-colors duration-150"
           >
             Get in Touch →
           </a>

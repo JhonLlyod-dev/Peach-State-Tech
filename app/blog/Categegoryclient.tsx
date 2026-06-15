@@ -28,7 +28,6 @@ export default function CategoryClient() {
     })
   }, [])
 
-  // Sync selected category when URL param changes (e.g. browser back/forward)
   useEffect(() => {
     setSelectedCategory(categoryParam)
   }, [categoryParam])
@@ -83,31 +82,34 @@ export default function CategoryClient() {
   }
 
   return (
-    <div className="p-6 min-h-[80dvh] max-w-7xl mx-auto">
-      {/*
-       * ✅ This H2 replaces the old dynamic H1.
-       * The real H1 lives in the server-rendered page.tsx above.
-       * Using H2 here keeps heading hierarchy correct (H1 → H2).
-       */}
-      <h2 className="text-3xl font-bold mb-6 text-center">
-        {selectedCategory}
-      </h2>
-
+    <div>
       {/* Category Filters */}
-      <div className="flex flex-wrap justify-center gap-3 mb-8">
+      <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-zinc-200">
         {categories.map((category: any) => (
           <button
             key={category._id}
             onClick={() => handleCategoryChange(category.title)}
-            className={`px-4 py-2 rounded-full border transition ${
+            className={`text-xs font-semibold px-4 py-2 rounded-full border transition-colors cursor-pointer ${
               selectedCategory === category.title
-                ? "bg-black text-white"
-                : "bg-white text-black border-gray-300 hover:bg-gray-100"
+                ? "bg-gradient-peach text-white border-peach"
+                : "bg-white text-zinc-600 border-zinc-200 hover:border-peach hover:text-peach"
             }`}
           >
             {category.title}
           </button>
         ))}
+      </div>
+
+      {/* Section label */}
+      <div className="flex items-baseline justify-between mb-6">
+        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
+          {selectedCategory}
+        </h2>
+        {!loading && (
+          <p className="text-zinc-500 text-sm">
+            {relatedArticles.length} {relatedArticles.length === 1 ? "story" : "stories"}
+          </p>
+        )}
       </div>
 
       {/* Article Grid */}
@@ -120,8 +122,8 @@ export default function CategoryClient() {
           <>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
               {paginatedArticles.length === 0 ? (
-                <p className="text-gray-600 text-center col-span-3">
-                  No related articles found.
+                <p className="text-zinc-500 text-center col-span-full">
+                  No stories here yet. Try another topic.
                 </p>
               ) : (
                 paginatedArticles.map((post: any, index: number) => {
@@ -148,11 +150,11 @@ export default function CategoryClient() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2 mt-10">
+              <div className="flex items-center justify-center gap-1.5 mt-10">
                 <button
                   onClick={() => handlePageChange(pageParam - 1)}
                   disabled={pageParam === 1}
-                  className="pagination"
+                  className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
                 >
                   <ChevronLeft size={18} />
                 </button>
@@ -160,7 +162,7 @@ export default function CategoryClient() {
                 {buildPages().map((p) => {
                   if (p === "ellipsis-left" || p === "ellipsis-right") {
                     return (
-                      <span key={p} className="px-1 text-gray-400 select-none">
+                      <span key={p} className="px-1 text-zinc-400 select-none">
                         …
                       </span>
                     )
@@ -169,10 +171,10 @@ export default function CategoryClient() {
                     <button
                       key={p}
                       onClick={() => handlePageChange(p)}
-                      className={`px-2 cursor-pointer ${
+                      className={`flex items-center justify-center w-9 h-9 rounded-md text-sm font-medium transition-colors cursor-pointer ${
                         pageParam === p
-                          ? "border rounded text-white bg-peach"
-                          : ""
+                          ? "bg-gradient-peach text-white"
+                          : "text-zinc-600 hover:bg-zinc-100"
                       }`}
                     >
                       {p}
@@ -183,7 +185,7 @@ export default function CategoryClient() {
                 <button
                   onClick={() => handlePageChange(pageParam + 1)}
                   disabled={pageParam === totalPages}
-                  className="pagination"
+                  className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -191,8 +193,8 @@ export default function CategoryClient() {
             )}
 
             {totalPages > 1 && (
-              <p className="text-center text-sm text-gray-500 mt-3">
-                Page {pageParam} of {totalPages} · {relatedArticles.length} articles
+              <p className="text-center text-sm text-zinc-500 mt-3">
+                Page {pageParam} of {totalPages} · {relatedArticles.length} stories
               </p>
             )}
           </>

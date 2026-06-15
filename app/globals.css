@@ -9,9 +9,50 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-peach: #FFB7A5;
+  --color-peach: #dd5452;
+  --color-peach-light: #f28683;
+  --color-violet: #93396a;
+  --color-violet-light: #c45d6a;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+@utility text-gradient-peach {
+  background-image: linear-gradient(to right, var(--color-peach), var(--color-peach-light));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient-peach {
+  background-image: linear-gradient(to right, var(--color-peach), var(--color-peach-light));
+}
+
+@utility bg-gradient-violet {
+  background-image: linear-gradient(to right, var(--color-violet), var(--color-violet-light));
+}
+
+@utility bg-gradient-violet-bottom {
+  background-image: linear-gradient(to bottom, var(--color-violet), var(--color-violet-light));
+}
+
+@utility bg-gradient-both {
+  background-image: linear-gradient(to bottom, var(--color-peach), var(--color-violet));
+}
+
+@utility bg-gradient-all{
+  background-image: linear-gradient(to bottom, var(--color-peach), var(--color-peach-light), var(--color-violet-light), var(--color-violet));
+}
+
+
+
+@utility text-gradient-violet {
+  background-image: linear-gradient(to right, var(--color-violet), var(--color-violet-light));
+  background-clip: text;
+  color: transparent;
+}
+
+@utility font-logo {
+  font-family: var(--font-peach);
 }
 
 @utility flex-center{
@@ -19,7 +60,7 @@
 }
 
 .nav-link {
-  @apply hover:text-peach transition duration-300 cursor-pointer border-b-2 border-transparent hover:border-peach/40;
+  @apply hover:text-gradient-peach active:text-gradient-violet transition duration-300 cursor-pointer border-b-2 border-transparent hover:border-peach/40 active:border-violet/40;
 }
 
 .hover-link {

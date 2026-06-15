@@ -19,10 +19,10 @@ export default function ContactPage() {
   return(
     <div className="flex min-h-screen bg-zinc-50 font-sans">
       <section className="hidden md:block flex-1/4 relative rounded-r-2xl">
-        <div className="absolute inset-0 flex-center flex-col  bg-foreground/30 backdrop-blur-xs   px-4 text-center rounded-r-2xl">
+        <div className="absolute inset-0 flex-center flex-col  bg-foreground/30 backdrop-blur-xs   px-4 text-center ">
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Be Part of <span className="text-primary text-peach">Peach State Tech</span>
+            Be Part of <span className="text-primary text-gradient-peach">Peach State Tech</span>
           </h1>
 
           <p className="mt-4 max-w-2xl text-base sm:text-lg md:text-xl text-white/90">
@@ -30,7 +30,7 @@ export default function ContactPage() {
           </p>
 
         </div>
-        <img src="/meeting.jpg" alt="peach-tech-background" className="h-full w-full object-cover rounded-r-2xl" />
+        <img src="/meeting.jpg" alt="peach-tech-background" className="h-full w-full object-cover " />
       </section>
 
       <section className="flex-1 flex items-center justify-center bg-white p-8">
@@ -91,7 +91,7 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-full cursor-pointer bg-peach text-white font-semibold py-3 px-6 rounded-lg hover:bg-peach/80 transition duration-200"
+              className="w-full cursor-pointer bg-gradient-peach text-white font-semibold py-3 px-6 rounded-lg hover:bg-peach/80 transition duration-200"
             >
               Send Message
             </button>

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Discover Top Trends at Peachstate.tech for Georgia Tech Startup News",
   authors: [{ name: "Peach State Tech" }],
   description:
-    "Stay ahead of Georgia Tech trends with peachstate.tech! Discover the latest innovations, insights, and updates shaping the future of technology in Georgia.",
+    "Peach State Tech covers Georgia's startup, AI, and venture capital news — from Atlanta innovation labs to emerging tech companies shaping the state's economy.",
   keywords: [
     "Georgia tech",
     "Atlanta startups",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/happy.webp",
+        url: "/logo1.webp",
         width: 1200,
         height: 630,
         alt: "Peach State Tech",

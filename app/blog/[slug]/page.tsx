@@ -159,8 +159,8 @@ export default async function BlogPost({ params }: PageProps) {
           {/* Author Info */}
           <div className="flex items-center justify-between mt-6 flex-wrap gap-4">
             <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-peach to-orange-500 flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-                <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full" />
+              <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
+                <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full p-2" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -192,8 +192,8 @@ export default async function BlogPost({ params }: PageProps) {
         <div className="motion-preset-focus motion-delay-300 bg-white rounded-2xl shadow-lg p-6 sm:p-8 mb-8 border border-gray-100">
           <h3 className="text-xl font-bold text-gray-900 mb-4">Written by</h3>
           <div className="flex items-start gap-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-to-br from-peach to-orange-500 flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-              <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full" />
+            <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
+              <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full p-2" />
             </div>
             <div>
               <p className="font-semibold text-lg text-gray-900">{post.author.name}</p>

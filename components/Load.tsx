@@ -1,27 +1,37 @@
+import Image from "next/image";
+
 export default function Load() {
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      width: "100%",
-      height: "100%",
-    }}>
+    <div className="flex items-center justify-center py-6">
+      <div className="relative w-10 h-10 sm:w-12 sm:h-12">
+        <Image
+          src="/logo1.webp"
+          alt="Peach State Tech"
+          fill
+          className="object-contain"
+          style={{ animation: "psFadeA 1.8s ease-in-out infinite" }}
+          priority
+        />
+        <Image
+          src="/logo_white.webp"
+          alt="Peach State Tech"
+          fill
+          className="object-contain"
+          style={{ animation: "psFadeB 1.8s ease-in-out infinite" }}
+          priority
+        />
+      </div>
+
       <style>{`
-        @keyframes spin {
-          0%   { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes psFadeA {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0; transform: scale(0.9); }
         }
-        .loader {
-          width: 44px;
-          height: 44px;
-          border-radius: 50%;
-          border: 3.5px solid rgba(255, 183, 165, 0.2);
-          border-top-color: #FFB7A5;
-          animation: spin 0.75s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+        @keyframes psFadeB {
+          0%, 100% { opacity: 0; transform: scale(0.9); }
+          50% { opacity: 1; transform: scale(1); }
         }
       `}</style>
-      <div className="loader" />
     </div>
   );
 }

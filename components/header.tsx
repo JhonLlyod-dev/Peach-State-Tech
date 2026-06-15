@@ -5,6 +5,13 @@ import {Search,Logs,X} from "lucide-react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
+import localfont from "next/font/local";
+
+const peach_font = localfont({
+  src: "../public/fonts/yfilescompact.ttf",
+  variable: "--font-peach",
+});
+
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,11 +31,16 @@ export default function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between   py-4  px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding ">
+    <header className="flex items-center justify-between   py-4  px-6 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding ">
       <Link href="/">
-        <div className="flex-center flex-col">
-          <img src="/logo1.png" alt="Company Logo" className="w-10 motion-preset-pop motion-delay-100 hover-link" />
-          <span className="text-sm font-bold motion-preset-pop motion-delay-200">Peach State</span>
+        <div className={`${peach_font.variable} flex-center flex-col  font-logo`}>
+          
+          <div className="flex-center gap-2 hover-link ">
+            <span className="hidden sm:block text-3xl font-bold motion-preset-pop motion-delay-100 uppercase hover:text-gradient-peach transition-colors">Peach</span>
+            <img src="/logo1.webp" alt="Company Logo" className="w-10 motion-preset-pop motion-delay-200 " />
+            <span className="hidden sm:block text-3xl font-bold motion-preset-pop motion-delay-300 uppercase hover:text-gradient-peach transition-colors">State</span>
+          </div>
+          <span className=" hidden lg:block text-xl font-semibold  motion-preset-pop motion-delay-400 uppercase tracking-widest text-gradient-peach hover:text-gradient-violet transition-colors">T e c h</span>
         </div>
       </Link>
 
@@ -41,16 +53,16 @@ export default function Header() {
           { isOpen && 
             <div className=" motion-preset-blur-down-md absolute z-40 top-10 right-0 bg-white border border-gray-100 shadow-sm p-4 ">
               <ul className=" font-medium  space-x-8 space-y-4">
-                <li className=" px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
+                <li className=" px-1 w-full border-b-2 border-transparent    active:border-peach hover:border-peach active:text-violet">
                   <Link href="/">Latest</Link>
                 </li>
-                <li className=" px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
+                <li className=" px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-violet">
                   <Link href="/blog">Blogs</Link>
                 </li>
-                <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
+                <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-violet">
                   <Link href="/browse?">Browse</Link>
                 </li>
-                <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-peach">
+                <li className="px-1 w-full border-b-2 border-transparent   active:border-peach hover:border-peach active:text-violet">
                   <Link href="/about">About</Link>
                 </li>
               </ul>
@@ -75,7 +87,7 @@ export default function Header() {
           </li>
         </ul>
 
-        <div className=" motion-preset-slide-down-right motion-delay-100 border hidden sm:flex-center border-l-4  border-l-peach gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm">
+        <div className=" motion-preset-slide-down-right bg-gradient-peach motion-delay-100 border hidden sm:flex-center gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm">
           <input type="text"
             onFocus={() => setIsSearchOpen(true)}
             onBlur={() => setIsSearchOpen(false)}
@@ -85,6 +97,9 @@ export default function Header() {
             className={`
               outline-none
               font-extralight
+              placeholder:text-white
+              tracking-wide
+              text-white
               transition-all
               duration-300
               ${isSearchOpen ? "w-64" : "w-13"}
@@ -92,7 +107,7 @@ export default function Header() {
             placeholder="Search blog..."
           />
 
-          <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
+          <button onClick={handleSearch} className="text-white hover:text-violet cursor-pointer">
               <Search size={16} />
           </button>
 

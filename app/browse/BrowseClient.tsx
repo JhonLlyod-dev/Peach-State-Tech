@@ -59,31 +59,30 @@ export default function BrowseClient() {
   };
 
   return (
-    <section className="">
-
+    <section>
       {/* Search Bar */}
-      <div className="mb-10">
-        <div className="border text-foreground flex items-center border-l-4 border-l-peach gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm w-full sm:w-[420px] md:w-[520px] lg:w-[640px]">
+      <div className="mb-8">
+        <div className="flex items-center gap-2 bg-gradient-peach border border-l-4 border-l-peach border-zinc-200 bg-white shadow-sm rounded-md px-4 py-2.5 w-full sm:w-[420px] md:w-[480px]">
           <input
             type="text"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-            className="outline-none text-foreground transition-all duration-300 w-full bg-transparent"
+            className="outline-none text-white transition-all duration-300 tracking-wide w-full bg-transparent  placeholder:text-white"
             placeholder="Search Author, Company, or Keyword..."
           />
-          <button onClick={handleSearch} className="hover:text-peach cursor-pointer">
+          <button onClick={handleSearch} className="text-white hover:text-violet cursor-pointer transition-colors">
             <Search size={16} />
           </button>
         </div>
       </div>
 
       {/* Results Header */}
-      <div className="mb-6">
-        <h2 className="text-xl font-semibold text-gray-900">
+      <div className="flex items-baseline justify-between mb-6 pb-3 border-b border-zinc-200">
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">
           {query ? `Results for "${query}"` : "All Articles"}
         </h2>
-        <p className="text-gray-600 text-sm mt-1">
+        <p className="text-zinc-500 text-sm">
           {totalResults} {totalResults === 1 ? "article" : "articles"}
         </p>
       </div>
@@ -94,7 +93,7 @@ export default function BrowseClient() {
           <Load />
         </div>
       ) : currentPosts.length > 0 ? (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {currentPosts.map((post, index) => {
               const firstCategory =
@@ -119,12 +118,12 @@ export default function BrowseClient() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex-center gap-2 mt-4">
+            <div className="flex items-center justify-center gap-1.5">
               {/* Prev */}
               <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
-                className="pagination"
+                className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
               >
                 <ChevronLeft size={18} />
               </button>
@@ -152,7 +151,7 @@ export default function BrowseClient() {
                 return pages.map((p) => {
                   if (p === 'ellipsis-left' || p === 'ellipsis-right') {
                     return (
-                      <span key={p} className="px-1 text-gray-400 select-none">
+                      <span key={p} className="px-1 text-zinc-400 select-none">
                         …
                       </span>
                     );
@@ -161,8 +160,10 @@ export default function BrowseClient() {
                     <button
                       key={p}
                       onClick={() => handlePageChange(p)}
-                      className={`px-2 cursor-pointer  ${
-                        page === p ? 'border rounded text-white bg-peach' : ''
+                      className={`flex items-center justify-center w-9 h-9 rounded-md text-sm font-medium transition-colors cursor-pointer ${
+                        page === p
+                          ? 'bg-gradient-peach text-white'
+                          : 'text-zinc-600 hover:bg-zinc-100'
                       }`}
                     >
                       {p}
@@ -175,7 +176,7 @@ export default function BrowseClient() {
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
-                className="pagination"
+                className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
               >
                 <ChevronRight size={18} />
               </button>
@@ -183,21 +184,21 @@ export default function BrowseClient() {
           )}
         </div>
       ) : (
-        <section className="min-h-[20vh] flex flex-col items-center justify-center px-4 text-center gap-4 sm:gap-5">
-          <div className="flex-center">
-            <h2 className="motion-preset-blur-down-lg delay-600 text-peach font-black tracking-wide text-2xl sm:text-3xl md:text-4xl">
-              Not Found
-            </h2>
+        <section className="min-h-[40vh] flex flex-col items-center justify-center px-4 text-center gap-4 sm:gap-5">
+          <div className="flex flex-col items-center gap-2">
             <Image
-              src="/find.webp"
-              alt="Confused animated character with no articles available"
-              width={160}
-              height={160}
+              src="/logo_white.webp"
+              alt="no articles available"
+              width={140}
+              height={140}
               className="motion-preset-blur-left-lg delay-200 w-24 sm:w-28 md:w-36"
               priority
             />
+            <h2 className="motion-preset-blur-down-lg delay-600 text-gradient-violet font-black tracking-wide text-2xl sm:text-3xl md:text-4xl">
+              Not Found
+            </h2>
           </div>
-          <p className="motion-preset-blur-down-lg delay-800 text-gray-600 text-sm sm:text-base max-w-xs sm:max-w-md">
+          <p className="motion-preset-blur-down-lg delay-800 text-zinc-500 text-sm sm:text-base max-w-xs sm:max-w-md">
             Hmm… we couldn't find any articles matching your search. Try another one!
           </p>
         </section>
