@@ -1,4 +1,4 @@
-import { SanityClient } from "@sanity/client";
+// import { SanityClient } from "@sanity/client";
 import { sanityClient } from "./sanityClient";
 import { Search } from "lucide-react";
 
