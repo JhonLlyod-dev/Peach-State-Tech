@@ -31,7 +31,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between   py-4  px-6 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding ">
+    <header className="flex items-center justify-between bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 py-4  px-6 sm:px-8 md:px-16 lg:px-24 xl:px-32 padding ">
       <Link href="/">
         <div className={`${peach_font.variable} flex-center flex-col  font-logo`}>
           
@@ -51,7 +51,7 @@ export default function Header() {
           </button>
 
           { isOpen && 
-            <div className=" motion-preset-blur-down-md absolute z-40 top-10 right-0 bg-white border border-gray-100 shadow-sm p-4 ">
+            <div className=" motion-preset-blur-down-md absolute z-40 top-10 right-0 bg-white dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 shadow-sm dark:shadow-black/30 p-4 ">
               <ul className=" font-medium  space-x-8 space-y-4">
                 <li className=" px-1 w-full border-b-2 border-transparent    active:border-peach hover:border-peach active:text-violet">
                   <Link href="/">Latest</Link>
@@ -87,7 +87,7 @@ export default function Header() {
           </li>
         </ul>
 
-        <div className=" motion-preset-slide-down-right bg-gradient-peach motion-delay-100 border hidden sm:flex-center gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm">
+        <div className=" motion-preset-slide-down-right bg-gradient-peach dark:bg-gradient-violet motion-delay-100 border hidden sm:flex-center gap-1 border-gray-100 shadow-sm p-2 px-4 rounded-sm">
           <input type="text"
             onFocus={() => setIsSearchOpen(true)}
             onBlur={() => setIsSearchOpen(false)}

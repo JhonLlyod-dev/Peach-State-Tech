@@ -62,7 +62,7 @@ export default function BrowseClient() {
     <section>
       {/* Search Bar */}
       <div className="mb-8">
-        <div className="flex items-center gap-2 bg-gradient-peach border border-l-4 border-l-peach border-zinc-200 bg-white shadow-sm rounded-md px-4 py-2.5 w-full sm:w-[420px] md:w-[480px]">
+        <div className="flex items-center gap-2 bg-gradient-peach dark:bg-gradient-violet border border-l-4 border-l-peach dark:border-l-violet border-zinc-200 bg-white shadow-sm rounded-md px-4 py-2.5 w-full sm:w-[420px] md:w-[480px]">
           <input
             type="text"
             value={searchInput}

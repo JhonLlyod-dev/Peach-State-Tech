@@ -3,7 +3,7 @@ import Script from "next/script";
 
 export default function SubscribeForm() {
   return (
-    <div>
+    <div className=" bg-transparent">
       {/* Load Beehiiv embed script */}
       <Script
         src="https://subscribe-forms.beehiiv.com/embed.js"

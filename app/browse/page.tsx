@@ -14,7 +14,7 @@ const topics = [
 
 export default function BrowsePage() {
   return (
-    <main className="min-h-screen bg-linear-to-b from-gray-50 to-white py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+    <main className="min-h-screen bg-linear-to-b from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
       <div className=" mb-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Text side */}
         <div className="flex flex-col gap-6">
@@ -22,11 +22,11 @@ export default function BrowsePage() {
             Georgia Tech Stories
           </span>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-zinc-50">
             Discover What's Next
           </h1>
 
-          <p className="text-gray-600 max-w-md">
+          <p className="text-gray-600 dark:text-zinc-400 max-w-md">
             Startups, breakthroughs, and the people building Georgia's tech future.
           </p>
 
@@ -34,7 +34,7 @@ export default function BrowsePage() {
             {topics.map((tag) => (
               <span
                 key={tag}
-                className="text-xs bg-linear-to-tr from-peach/40 to-peach-light font-semibold px-3 py-1.5 rounded-full border border-zinc-200 text-white bg-white"
+                className="text-xs bg-linear-to-tr  from-peach/40 to-peach-light dark:from-violet/40 dark:to-violet font-semibold px-3 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-700 text-white bg-white"
               >
                 {tag}
               </span>
@@ -43,7 +43,7 @@ export default function BrowsePage() {
         </div>
 
         {/* Image side */}
-        <div className="relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm">
+        <div className="relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm dark:shadow-black/30">
           <Image
             src="/background.webp"
             alt="Atlanta skyline, home to Georgia's growing tech ecosystem"

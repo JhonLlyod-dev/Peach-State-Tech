@@ -91,8 +91,8 @@ export default function CategoryClient() {
             onClick={() => handleCategoryChange(category.title)}
             className={`text-xs font-semibold px-4 py-2 rounded-full border transition-colors cursor-pointer ${
               selectedCategory === category.title
-                ? "bg-gradient-peach text-white border-peach"
-                : "bg-white text-zinc-600 border-zinc-200 hover:border-peach hover:text-peach"
+                ? "bg-gradient-peach dark:bg-gradient-violet text-white border-peach dark:border-violet"
+                : "bg-white text-zinc-600 border-zinc-200 hover:border-peach hover:text-peach dark:hover:border-violet dark:hover:text-violet"
             }`}
           >
             {category.title}

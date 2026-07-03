@@ -4,7 +4,7 @@ import Script from "next/script";
 
 export default function NewsletterForm() {
   return (
-    <div>
+    <div className=" bg-transparent">
       {/* Load Beehiiv script */}
       <Script
         src="https://subscribe-forms.beehiiv.com/embed.js"
@@ -14,7 +14,7 @@ export default function NewsletterForm() {
       {/* Embed the newsletter form */}
       <iframe
         src="https://subscribe-forms.beehiiv.com/e87454c8-47dc-484e-a882-5b4b2a712e52"
-        className="beehiiv-embed"
+        className="beehiiv-embed bg-transparent"
         data-test-id="beehiiv-embed"
         frameBorder="0"
         scrolling="no"

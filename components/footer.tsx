@@ -5,7 +5,7 @@ import { FaX, FaY, FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground text-white py-10 px-6 sm:px-12">
+    <footer className="bg-zinc-950 dark:bg-black text-white py-10 px-6 sm:px-12">
       {/* Top Section */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
         
@@ -17,34 +17,34 @@ export default function Footer() {
         {/* Navigation Links */}
         <div className="flex flex-col sm:flex-row gap-10 motion-preset-fade motion-delay-200">
           <div className="flex flex-col gap-2">
-            <h4 className="font-semibold text-gray-200">Company</h4>
-            <Link href="/about" className="text-gray-400 hover:text-gradient-peach transition">About</Link>
-            <Link href="/contact" className="text-gray-400 hover:text-gradient-peach transition">Contact</Link>
+            <h4 className="font-semibold text-zinc-200">Company</h4>
+            <Link href="/about" className="text-zinc-400 hover:text-gradient-peach transition">About</Link>
+            <Link href="/contact" className="text-zinc-400 hover:text-gradient-peach transition">Contact</Link>
           </div>
 
           <div className="flex flex-col gap-2 motion-preset-fade motion-delay-300">
-            <h4 className="font-semibold text-gray-200">Resources</h4>
-            <Link href="/privacy" className="text-gray-400 hover:text-gradient-peach transition">Privacy Policy</Link>
-            <Link href="/terms" className="text-gray-400 hover:text-gradient-peach transition">Terms of Service</Link>
+            <h4 className="font-semibold text-zinc-200">Resources</h4>
+            <Link href="/privacy" className="text-zinc-400 hover:text-gradient-peach transition">Privacy Policy</Link>
+            <Link href="/terms" className="text-zinc-400 hover:text-gradient-peach transition">Terms of Service</Link>
           </div>
         </div>
 
         {/* Social Icons */}
         <div className="flex flex-col gap-4 mt-4 md:mt-0 motion-preset-fade motion-delay-400">
-          <h4 className="font-semibold text-gray-200">Socials</h4>
+          <h4 className="font-semibold text-zinc-200">Socials</h4>
           <div className="flex gap-4">
-            <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/profile.php?id=61588566181619" className="text-gray-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
-            <a rel="noopener noreferrer nofollow" href="https://www.instagram.com/peachstatetech.team/" className="text-gray-400 hover:text-peach transition" target="_blank"><FaInstagram /></a>
-            <a rel="noopener noreferrer nofollow" href="https://x.com/peach_state2026" className="text-gray-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
-            <a rel="noopener noreferrer nofollow" href="https://www.tiktok.com/@peach_state_tech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
-            <a href="https://www.youtube.com/@PeachStateTech" className="text-gray-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
+            <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/profile.php?id=61588566181619" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
+            <a rel="noopener noreferrer nofollow" href="https://www.instagram.com/peachstatetech.team/" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaInstagram /></a>
+            <a rel="noopener noreferrer nofollow" href="https://x.com/peach_state2026" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
+            <a rel="noopener noreferrer nofollow" href="https://www.tiktok.com/@peach_state_tech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
+            <a href="https://www.youtube.com/@PeachStateTech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
           </div>
         </div>
 
       </div>
 
       {/* Bottom Section */}
-      <div className="mt-10 border-t border-gray-800 pt-4 text-gray-500 text-sm text-center">
+      <div className="mt-10 border-t border-zinc-800 pt-4 text-zinc-500 text-sm text-center">
         &copy; {new Date().getFullYear()} Peach State Tech. All rights reserved.
       </div>
     </footer>

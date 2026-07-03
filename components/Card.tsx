@@ -18,7 +18,7 @@ export default function Card(card: newsCard) {
    
 
   return (
-    <div className={` motion-preset-slide-up w-full bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col`}>
+    <div className={` motion-preset-slide-up w-full bg-white dark:bg-zinc-800 rounded-lg shadow-md dark:shadow-black/30 overflow-hidden hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300 flex flex-col`}>
       <img
         src={urlFor(card.coverImage).url()}
         alt={card.title}
@@ -33,18 +33,18 @@ export default function Card(card: newsCard) {
           <span className="text-sm text-peach font-bold tracking-wide uppercase">{card.categories}</span>
 
           {/* Title */}
-          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 line-clamp-2">
+          <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 dark:text-zinc-100 line-clamp-2">
             {card.title}
           </h3>
 
           {/* Description */}
-          <p className="text-gray-600 text-sm sm:text-base line-clamp-3">
+          <p className="text-gray-600 dark:text-zinc-400 text-sm sm:text-base line-clamp-3">
             {card.description}
           </p>
         </div>
 
         {/* Footer */}
-        <div className="flex justify-between items-center mt-4 text-gray-500 text-xs sm:text-sm">
+        <div className="flex justify-between items-center mt-4 text-gray-500 dark:text-zinc-500 text-xs sm:text-sm">
           <span>{formatDate(card.publishedAt)}</span>
           <Link
             href={`/blog/${card.slug}`}

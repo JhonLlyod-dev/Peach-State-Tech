@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <main className="min-h-screen bg-zinc-50 font-sans overflow-hidden">
+    <main className="min-h-screen bg-zinc-50 dark:bg-zinc-900 font-sans overflow-hidden">
 
       {/* ── Hero ── full-bleed photo background */}
       <section className="relative h-[70vh] min-h-[480px] max-h-[720px] flex items-end overflow-hidden">
@@ -38,15 +38,15 @@ export default function About() {
               Our Mission
             </span>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-zinc-900 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight text-zinc-900 dark:text-zinc-50 tracking-tight">
             Connecting Georgia's<br />Tech Ecosystem
           </h2>
-          <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
             Our mission is to bridge the gap between Georgia-based startups,
             scale-ups, and tech leaders — and the investors, professionals, and
             communities ready to champion them.
           </p>
-          <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">
+          <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
             We publish stories that build trust, drive discovery, and put
             Georgia's most innovative companies on the map — locally, nationally,
             and beyond.
@@ -57,7 +57,7 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop"
             alt="Startup team collaborating around a table"
-            className="w-full h-80 lg:h-96 object-cover rounded-sm shadow-lg"
+            className="w-full h-80 lg:h-96 object-cover rounded-sm shadow-lg dark:shadow-black/30"
           />
           <div className="absolute -bottom-3 -left-3 w-16 h-16 border-b-4 border-l-4 border-peach rounded-bl-sm" />
         </div>
@@ -65,7 +65,7 @@ export default function About() {
 
 
       {/* ── What We Do ── dark bg, photo left, text right */}
-      <section className="bg-zinc-900 text-white overflow-hidden">
+      <section className="bg-zinc-900 dark:bg-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
           <div className="motion-preset-slide-right motion-delay-200 relative order-2 lg:order-1">
@@ -177,15 +177,15 @@ export default function About() {
               key={title}
               className={`
                 motion-preset-slide-up ${delay}
-                group bg-white border border-zinc-200 rounded-sm p-6
-                hover:border-peach hover:shadow-md transition-all duration-200
+                group bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-sm p-6
+                hover:border-peach hover:shadow-md dark:hover:shadow-black/30 transition-all duration-200
               `}
             >
               <div className="text-2xl mb-4">{icon}</div>
-              <h3 className="font-black text-zinc-900 text-lg mb-2 group-hover:text-gradient-peach transition-colors duration-200">
+              <h3 className="font-black text-zinc-900 dark:text-zinc-50 text-lg mb-2 group-hover:text-gradient-peach transition-colors duration-200">
                 {title}
               </h3>
-              <p className="text-zinc-500 text-sm leading-relaxed">{desc}</p>
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>

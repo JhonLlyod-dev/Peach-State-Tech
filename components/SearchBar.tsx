@@ -16,7 +16,7 @@ export default function SearchBar() {
 
   return (
     <div className="w-full motion-preset-fade motion-delay-500 max-w-xl">
-      <div className="flex items-center gap-2 bg-gradient-peach text-foreground border border-zinc-200  rounded-md px-4 py-2.5 shadow-sm">
+      <div className="flex items-center gap-2 bg-gradient-peach dark:bg-gradient-violet text-foreground border border-zinc-200  rounded-md px-4 py-2.5 shadow-sm">
         <input
           type="text"
           value={searchQuery}

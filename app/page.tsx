@@ -6,17 +6,18 @@ import { newsCard } from "@/components/Card";
 import { getNewsCard } from "@/sanity/queries";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
+import ThemeToggle from "@/components/ThemeToggle";
 
 function CardSkeleton() {
   return (
-    <div className="rounded-2xl overflow-hidden bg-white shadow-sm animate-pulse">
-      <div className="h-48 bg-zinc-200" />
+    <div className="rounded-2xl overflow-hidden bg-white dark:bg-zinc-800 shadow-sm dark:shadow-black/30 animate-pulse">
+      <div className="h-48 bg-zinc-200 dark:bg-zinc-700" />
       <div className="p-4 flex flex-col gap-3">
-        <div className="h-3 w-20 bg-zinc-200 rounded-full" />
-        <div className="h-5 w-full bg-zinc-200 rounded-full" />
-        <div className="h-5 w-3/4 bg-zinc-200 rounded-full" />
-        <div className="h-3 w-full bg-zinc-100 rounded-full" />
-        <div className="h-3 w-5/6 bg-zinc-100 rounded-full" />
+        <div className="h-3 w-20 bg-zinc-200 dark:bg-zinc-700 rounded-full" />
+        <div className="h-5 w-full bg-zinc-200 dark:bg-zinc-700 rounded-full" />
+        <div className="h-5 w-3/4 bg-zinc-200 dark:bg-zinc-700 rounded-full" />
+        <div className="h-3 w-full bg-zinc-100 dark:bg-zinc-800 rounded-full" />
+        <div className="h-3 w-5/6 bg-zinc-100 dark:bg-zinc-800 rounded-full" />
       </div>
     </div>
   );
@@ -60,15 +61,15 @@ export default function Home() {
   }));
 
   return (
-    <main className="flex flex-col min-h-screen bg-zinc-50 font-sans">
+    <main className="relative flex flex-col min-h-screen bg-zinc-50 dark:bg-zinc-900 font-sans">
       {/* Hero */}
-      <section className="relative w-full h-80 sm:h-96 md:h-112 overflow-hidden bg-foreground">
+      <section className="relative w-full h-80 sm:h-96 md:h-112 overflow-hidden bg-zinc-950 dark:bg-black">
         <img
           src="/background.webp"
           alt="Atlanta skyline representing Georgia's growing tech ecosystem"
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-foreground/65 backdrop-blur-[2px] px-4 sm:px-8 md:px-16 text-white text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-zinc-950/65 dark:bg-black/65 backdrop-blur-[2px] px-4 sm:px-8 md:px-16 text-white text-center">
           <p className="font-extrabold motion-preset-fade-lg motion-delay-100 tracking-widest text-gradient-peach text-xs sm:text-sm uppercase">
             Peach State Tech
           </p>
@@ -134,6 +135,8 @@ export default function Home() {
           </>
         )}
       </section>
+
+      <ThemeToggle />
     </main>
   );
 }

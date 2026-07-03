@@ -1,14 +1,27 @@
 @import "tailwindcss";
 @plugin "tailwindcss-motion";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --surface: #ffffff;
+  --border-subtle: #e4e4e7;
+}
+
+.dark {
+  --background: #18181b;
+  --foreground: #f4f4f5;
+  --surface: #27272a;
+  --border-subtle: #3f3f46;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-border-subtle: var(--border-subtle);
   --color-peach: #dd5452;
   --color-peach-light: #f28683;
   --color-violet: #93396a;
@@ -39,11 +52,9 @@
   background-image: linear-gradient(to bottom, var(--color-peach), var(--color-violet));
 }
 
-@utility bg-gradient-all{
+@utility bg-gradient-all {
   background-image: linear-gradient(to bottom, var(--color-peach), var(--color-peach-light), var(--color-violet-light), var(--color-violet));
 }
-
-
 
 @utility text-gradient-violet {
   background-image: linear-gradient(to right, var(--color-violet), var(--color-violet-light));
@@ -55,7 +66,7 @@
   font-family: var(--font-peach);
 }
 
-@utility flex-center{
+@utility flex-center {
   @apply flex items-center justify-center;
 }
 
@@ -70,14 +81,13 @@
   @apply active:scale-95 hover:scale-105 transition duration-300 cursor-pointer;
 }
 
-.pagination{
+.pagination {
   @apply bg-peach text-white py-1 px-3 rounded-md
-hover:scale-110 active:scale-95
-transform ease-in-out duration-300
-disabled:bg-gray-300 disabled:text-gray-500
-disabled:hover:scale-100 disabled:cursor-not-allowed
-cursor-pointer
-
+    hover:scale-110 active:scale-95
+    transform ease-in-out duration-300
+    disabled:bg-gray-300 disabled:text-gray-500
+    disabled:hover:scale-100 disabled:cursor-not-allowed
+    cursor-pointer;
 }
 
 body {
@@ -93,7 +103,7 @@ body {
   }
 }
 
-/* From Uiverse.io by alexruix */ 
+/* From Uiverse.io by alexruix */
 .loader {
   width: 100px;
   height: 50px;
@@ -105,7 +115,7 @@ body {
   top: 0;
   left: 0;
   transform: translateX(100%);
-  
+
   text-align: start;
   padding: 0;
   margin: 0;
@@ -116,9 +126,8 @@ body {
   width: 100%;
 }
 
-
 .load {
-  background-color: #FFB7A5;
+  background-color: #ffb7a5;
   border-radius: 50px;
   display: block;
   height: 16px;
@@ -144,22 +153,18 @@ body {
     letter-spacing: 1px;
     transform: translateX(0px);
   }
-
   40% {
     letter-spacing: 2px;
     transform: translateX(26px);
   }
-
   80% {
     letter-spacing: 1px;
     transform: translateX(32px);
   }
-
   90% {
     letter-spacing: 2px;
     transform: translateX(0px);
   }
-
   100% {
     letter-spacing: 1px;
     transform: translateX(0px);
@@ -171,22 +176,18 @@ body {
     width: 16px;
     transform: translateX(0px);
   }
-
   40% {
     width: 100%;
     transform: translateX(0px);
   }
-
   80% {
     width: 16px;
     transform: translateX(64px);
   }
-
   90% {
     width: 100%;
     transform: translateX(0px);
   }
-
   100% {
     width: 16px;
     transform: translateX(0px);
@@ -198,28 +199,20 @@ body {
     transform: translateX(0px);
     width: 16px;
   }
-
   40% {
     transform: translateX(0%);
     width: 80%;
   }
-
   80% {
     width: 100%;
     transform: translateX(0px);
   }
-
   90% {
     width: 80%;
     transform: translateX(15px);
   }
-
   100% {
     transform: translateX(0px);
     width: 16px;
   }
 }
- 
- 
-
-
