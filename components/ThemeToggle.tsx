@@ -37,6 +37,8 @@ export default function ThemeToggle() {
       className="fixed right-5 bottom-5 z-50"
       onMouseEnter={openMenu}
       onMouseLeave={scheduleClose}
+      onFocus={openMenu}
+      onBlur={scheduleClose}
     >
       {/* Popup menu */}
       <div
