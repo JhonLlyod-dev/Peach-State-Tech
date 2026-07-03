@@ -12,13 +12,13 @@ export default function About() {
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-zinc-900/20" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 pb-16 w-full">
-          <p className="motion-preset-slide-right motion-delay-200 text-gradient-peach font-bold text-sm sm:text-base uppercase tracking-widest mb-4">
+          <p className="motion-preset-slide-right motion-delay-200 text-gradient-peach dark:text-gradient-violet font-bold text-sm sm:text-base uppercase tracking-widest mb-4">
             About Peach State Tech
           </p>
           <h1 className="motion-preset-slide-up motion-delay-300 text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.05] tracking-tight text-white mb-6">
             Georgia's Tech&nbsp;Story
             <br />
-            <span className="text-gradient-peach">Starts Here.</span>
+            <span className="text-gradient-peach dark:text-gradient-violet">Starts Here.</span>
           </h1>
           <p className="motion-preset-fade motion-delay-500 text-zinc-300 text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl">
             Peach State Tech is Georgia's dedicated media and marketing platform —
@@ -34,7 +34,7 @@ export default function About() {
         <div className="motion-preset-slide-right motion-delay-200 space-y-6">
           <div className="inline-flex items-center gap-3">
             <span className="w-10 h-px bg-gradient-peach" />
-            <span className="text-gradient-peach font-bold text-xs uppercase tracking-widest">
+            <span className="text-gradient-peach dark:text-gradient-violet font-bold text-xs uppercase tracking-widest">
               Our Mission
             </span>
           </div>
@@ -178,11 +178,11 @@ export default function About() {
               className={`
                 motion-preset-slide-up ${delay}
                 group bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-sm p-6
-                hover:border-peach hover:shadow-md dark:hover:shadow-black/30 transition-all duration-200
+                hover:border-peach dark:hover:border-violet hover:shadow-md dark:hover:shadow-black/30 transition-all duration-200
               `}
             >
               <div className="text-2xl mb-4">{icon}</div>
-              <h3 className="font-black text-zinc-900 dark:text-zinc-50 text-lg mb-2 group-hover:text-gradient-peach transition-colors duration-200">
+              <h3 className="font-black text-zinc-900 dark:text-zinc-50 text-lg mb-2 group-hover:text-gradient-peach dark:group-hover:text-gradient-violet transition-colors duration-200">
                 {title}
               </h3>
               <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">{desc}</p>
@@ -199,7 +199,7 @@ export default function About() {
           alt="Founders shaking hands at a Georgia tech event"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-linear-to-r from-peach/90 to-peach-light/90" />
+        <div className="absolute inset-0 bg-linear-to-r from-peach/90 to-peach-light/90 dark:from-violet/90 dark:to-violet/90" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-16 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
@@ -212,7 +212,7 @@ export default function About() {
           </div>
           <a
             href="/contact"
-            className="shrink-0 bg-white text-peach font-bold text-sm px-6 py-3 rounded-sm hover:bg-zinc-100 transition-colors duration-150"
+            className="shrink-0 bg-white text-peach dark:text-violet font-bold text-sm px-6 py-3 rounded-sm hover:bg-zinc-100 transition-colors duration-150"
           >
             Get in Touch →
           </a>

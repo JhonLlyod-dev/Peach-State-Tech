@@ -70,7 +70,7 @@ export default function Home() {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-5 bg-zinc-950/65 dark:bg-black/65 backdrop-blur-[2px] px-4 sm:px-8 md:px-16 text-white text-center">
-          <p className="font-extrabold motion-preset-fade-lg motion-delay-100 tracking-widest text-gradient-peach text-xs sm:text-sm uppercase">
+          <p className="font-extrabold motion-preset-fade-lg motion-delay-100 tracking-widest text-gradient-peach dark:text-gradient-violet text-xs sm:text-sm uppercase">
             Peach State Tech
           </p>
           <h1 className="font-bold text-white motion-preset-fade-lg motion-delay-200 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight max-w-3xl">
@@ -86,12 +86,12 @@ export default function Home() {
       {/* News grid */}
       <section className="flex flex-col py-10 md:py-14 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="font-bold text-gradient-peach text-xl sm:text-2xl">
+          <h2 className="font-bold text-gradient-peach dark:text-gradient-violet text-xl sm:text-2xl">
             Latest Georgia Tech &amp; Startup News
           </h2>
           <Link
             href="/browse"
-            className="hidden sm:inline-flex font-semibold text-sm text-gradient-peach hover:text-gradient-violet transition-colors"
+            className="hidden sm:inline-flex font-semibold text-sm text-gradient-peach dark:text-gradient-violet hover:text-gradient-violet dark:hover:text-gradient-peach transition-colors"
           >
             View all →
           </Link>
@@ -128,7 +128,7 @@ export default function Home() {
             </div>
             <Link
               href="/browse"
-              className="mt-10 self-center font-semibold text-sm sm:text-base text-peach border-2 border-peach rounded-full px-6 py-2 hover:bg-gradient-peach hover:text-white active:bg-gradient-violet active:border-violet transition-colors duration-200"
+              className="mt-10 self-center font-semibold text-sm sm:text-base text-peach dark:text-violet border-2 border-peach dark:border-violet rounded-full px-6 py-2 hover:bg-gradient-peach dark:hover:bg-gradient-violet hover:text-white active:bg-gradient-violet active:border-violet dark:active:border-peach dark:active:bg-gradient-peach transition-colors duration-200"
             >
               Browse more stories
             </Link>

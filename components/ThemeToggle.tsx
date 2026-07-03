@@ -15,8 +15,26 @@ export default function ThemeToggle() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => setMounted(true), []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    function handleOutside(e: MouseEvent | TouchEvent) {
+      if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleOutside);
+    document.addEventListener("touchstart", handleOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleOutside);
+      document.removeEventListener("touchstart", handleOutside);
+    };
+  }, [open]);
 
   if (!mounted) return null;
 
@@ -32,18 +50,12 @@ export default function ThemeToggle() {
     closeTimer.current = setTimeout(() => setOpen(false), 150);
   };
 
-  const mobile_click = () => {
-    if (open) setOpen(false);
-    else openMenu();
-  };
-
   return (
     <div
+      ref={containerRef}
       className="fixed right-5 bottom-5 z-50"
       onMouseEnter={openMenu}
       onMouseLeave={scheduleClose}
-      onFocus={mobile_click}
-      onBlur={scheduleClose}
     >
       {/* Popup menu */}
       <div
@@ -75,6 +87,10 @@ export default function ThemeToggle() {
       {/* Trigger button */}
       <button
         aria-label="Toggle theme"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen((prev) => !prev);
+        }}
         className="flex items-center justify-center rounded-full p-4 bg-peach dark:bg-zinc-800 shadow-sm hover:shadow-md transition-shadow"
       >
         <CurrentIcon className="text-zinc-100 dark:text-zinc-100" />
