@@ -32,12 +32,17 @@ export default function ThemeToggle() {
     closeTimer.current = setTimeout(() => setOpen(false), 150);
   };
 
+  const mobile_click = () => {
+    if (open) setOpen(false);
+    else openMenu();
+  };
+
   return (
     <div
       className="fixed right-5 bottom-5 z-50"
       onMouseEnter={openMenu}
       onMouseLeave={scheduleClose}
-      onFocus={openMenu}
+      onFocus={mobile_click}
       onBlur={scheduleClose}
     >
       {/* Popup menu */}
