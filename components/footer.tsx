@@ -1,7 +1,9 @@
+// components/footer.tsx
 import { FaFacebookF, FaTiktok , FaLinkedinIn, FaInstagram,FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import NewsletterForm from "./Newsletter";
 import { FaX, FaY, FaXTwitter } from "react-icons/fa6";
+import CookieSettingsLink from "./cookies/CookieSettingsLink";
 
 export default function Footer() {
   return (
@@ -26,6 +28,7 @@ export default function Footer() {
             <h4 className="font-semibold text-zinc-200">Resources</h4>
             <Link href="/privacy" className="text-zinc-400 hover:text-gradient-peach transition">Privacy Policy</Link>
             <Link href="/terms" className="text-zinc-400 hover:text-gradient-peach transition">Terms of Service</Link>
+            <CookieSettingsLink />
           </div>
         </div>
 

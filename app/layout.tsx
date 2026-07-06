@@ -1,12 +1,15 @@
+// app/layout.tsx
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import ThemeToggle from "../components/ThemeToggle";
+import { CookieConsentProvider } from "@/components/CookieConsentContext";
+import AnalyticsScripts from "@/components/cookies/AnalyticsScripts";
+import CookieBanner from "@/components/cookies/CookieBanner";
+import CookiePreferencesModal from "@/components/cookies/CookiesPreferencesModal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -94,23 +97,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="UIZPu25FYF3nYc4FdpsxOw"
-          strategy="afterInteractive"
-        />
-      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <ThemeToggle />
+          <CookieConsentProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+            <ThemeToggle />
+            <CookieBanner />
+            <CookiePreferencesModal />
+            <AnalyticsScripts />
+          </CookieConsentProvider>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   );
