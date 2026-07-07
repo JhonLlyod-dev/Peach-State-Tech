@@ -90,6 +90,44 @@ export const viewport: Viewport = {
   ],
 };
 
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "NewsMediaOrganization",
+  name: "Peach State Tech",
+  url: "https://www.peachstate.tech",
+  logo: {
+    "@type": "ImageObject",
+    url: "https://www.peachstate.tech/logo1.webp",
+    width: 1200,
+    height: 630,
+  },
+  description:
+    "Peach State Tech covers Georgia's startup, AI, and venture capital news — from Atlanta innovation labs to emerging tech companies shaping the state's economy.",
+  sameAs: [
+    "https://www.facebook.com/profile.php?id=61588566181619",
+    "https://www.instagram.com/peachstatetech.team/",
+    "https://x.com/peach_state2026",
+    "https://www.tiktok.com/@peach_state_tech",
+    "https://www.youtube.com/@PeachStateTech",
+  ],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Peach State Tech",
+  url: "https://www.peachstate.tech",
+  publisher: {
+    "@type": "NewsMediaOrganization",
+    name: "Peach State Tech",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://www.peachstate.tech/browse?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -97,6 +135,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex min-h-screen flex-col bg-zinc-50 dark:bg-zinc-900 text-zinc-900 dark:text-zinc-100 transition-colors`}
       >

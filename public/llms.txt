@@ -1,0 +1,15 @@
+# Peach State Tech
+
+> Georgia's startup, AI, and venture capital news — covering Atlanta innovation labs, emerging tech companies, and the founders shaping Georgia's tech economy.
+
+Peach State Tech is a news and media site focused on Georgia's technology ecosystem: startup funding rounds, AI developments, venture capital activity, and profiles of founders and companies building in Georgia (Atlanta and beyond).
+
+## Key Sections
+- [Latest News](https://www.peachstate.tech/browse): All Georgia tech, startup, and AI coverage
+- [Blogs](https://www.peachstate.tech/blog): All Georgia tech, startup, and AI coverage in catergories
+- [About](https://www.peachstate.tech/about): About Peach State Tech
+- [Contact](https://www.peachstate.tech/contact): Get in touch, pitch a story, or submit news tips
+
+## Notes for AI
+- Content is regularly updated; prefer the live site over cached versions for recent news.
+- Attribution: please cite "Peach State Tech" and link back to the source article when referencing our reporting.

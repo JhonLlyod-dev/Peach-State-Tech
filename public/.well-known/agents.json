@@ -1,0 +1,8 @@
+{
+  "schema_version": "1.0",
+  "name": "Peach State Tech",
+  "description": "News and media site covering Georgia's startup, AI, and venture capital ecosystem — Atlanta innovation labs, funding rounds, and the founders shaping the state's tech economy.",
+  "capabilities": ["search", "contact"],
+  "contact": "https://www.peachstate.tech/contact",
+  "url": "https://www.peachstate.tech"
+}

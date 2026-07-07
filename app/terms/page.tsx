@@ -347,8 +347,8 @@ export default function TermsOfService() {
                   </svg>
                   <div className="min-w-0 flex-1">
                     <p className="text-xs sm:text-sm text-white/70 mb-1">Email</p>
-                    <a href="mailto:sam@thomasmarketing.solutions" className="font-semibold hover:underline text-sm sm:text-base break-all">
-                      sam@thomasmarketing.solutions
+                    <a href="mailto:peachstatetech.team@gmail.com" className="font-semibold hover:underline text-sm sm:text-base break-all">
+                      peachstatetech.team@gmail.com
                     </a>
                   </div>
                 </div>

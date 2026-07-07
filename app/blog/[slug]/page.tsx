@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
-import { getArticle,sameCategory } from "@/sanity/queries";
+import { getArticle, sameCategory } from "@/sanity/queries";
 import PageNotFound from "@/app/not-found";
 import { formatDate } from "@/lib/format";
 import { urlFor } from "@/sanity/sanityClient";
 import BarticleSmall from "@/components/Barticle";
 import { PortableText } from "@portabletext/react";
-import {portableTextComponents} from "@/lib/Portable";
+import { portableTextComponents } from "@/lib/Portable";
 import { newsCard } from "@/components/Card";
 import CopyLinkButton from "@/components/Copy";
 import SubscribeForm from "@/components/SubscribeForm";
-
-
-
 
 type Post = {
   title: string;
@@ -34,8 +31,6 @@ type Post = {
 
   body: any;
 };
-
-
 
 async function fetchPostBySlug(slug: string): Promise<Post | null> {
   try {
@@ -62,16 +57,13 @@ async function fetchPostBySlug(slug: string): Promise<Post | null> {
   }
 }
 
-
-
 type PageProps = {
   params: Promise<{ slug: string; id: string }>;
 };
 
-
 // ✅ Dynamic metadata
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const {slug} =  await params;
+  const { slug } = await params;
   const post = await fetchPostBySlug(slug);
 
   if (!post) {
@@ -81,24 +73,28 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  const categoryTitle = post.categories?.[0]?.title ?? "";
+
   return {
     title: `${post.title}`,
     description: post.description?.slice(0, 155) + "...",
-    authors: [{ name: "Peach State Tech" }],
+    authors: [{ name: post.author?.name ?? "Peach State Tech" }],
     openGraph: {
       title: post.title,
       description: post.description?.slice(0, 155) + "...",
       type: "article",
       url: `https://www.peachstate.tech/blog/${post.slug}`,
-      siteName: `${post.title} | Peach State Tech`,
+      siteName: "Peach State Tech",
+      publishedTime: post.publishedAt,
+      authors: [post.author?.name ?? "Peach State Tech"],
       images: [
         {
           url: urlFor(post.coverImage).url(),
           width: 800,
           height: 600,
-          alt: post.slug,
+          alt: post.title,
         },
-      ]
+      ],
     },
     alternates: {
       canonical: `https://www.peachstate.tech/blog/${post.slug}`,
@@ -106,35 +102,120 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     keywords: [
       post.title,
       post.description,
-      post.categories[0].title,
-      'Peach State Tech',
-      'Blog', 'Peach State Blog',
-      'Peach State Tech Blog', 'Georgia Peach State',
-      'Georgia Peach State Tech', 'Georgia Blog','Georgia Peach State Tech Blog'
-    ],
+      categoryTitle,
+      "Peach State Tech",
+      "Blog",
+      "Peach State Blog",
+      "Peach State Tech Blog",
+      "Georgia Peach State",
+      "Georgia Peach State Tech",
+      "Georgia Blog",
+      "Georgia Peach State Tech Blog",
+    ].filter(Boolean),
   };
 }
 
 export default async function BlogPost({ params }: PageProps) {
-  const {slug} =  await params;
+  const { slug } = await params;
   const post = await fetchPostBySlug(slug);
-  
+
   if (!post) {
-    return <PageNotFound/>;
+    return <PageNotFound />;
   }
-    const Related3 = await sameCategory(post.categories[0].title, post.id);
 
+  const categoryTitle = post.categories?.[0]?.title ?? "";
+  const Related3 = await sameCategory(categoryTitle, post.id);
 
-    return (
+  const coverImageUrl = urlFor(post.coverImage).url();
+  const canonicalUrl = `https://www.peachstate.tech/blog/${post.slug}`;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "NewsArticle",
+    headline: post.title,
+    description: post.description,
+    image: [coverImageUrl],
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: {
+      "@type": "Person",
+      name: post.author?.name ?? "Peach State Tech",
+      ...(post.author?.role ? { jobTitle: post.author.role } : {}),
+    },
+    publisher: {
+      "@type": "NewsMediaOrganization",
+      name: "Peach State Tech",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.peachstate.tech/logo1.webp",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": canonicalUrl,
+    },
+    ...(categoryTitle ? { articleSection: categoryTitle } : {}),
+    url: canonicalUrl,
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": undefined, // placeholder removed below
+  };
+
+  return (
     <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Home",
+                item: "https://www.peachstate.tech",
+              },
+              ...(categoryTitle
+                ? [
+                    {
+                      "@type": "ListItem",
+                      position: 2,
+                      name: categoryTitle,
+                      item: `https://www.peachstate.tech/browse?category=${encodeURIComponent(
+                        categoryTitle
+                      )}`,
+                    },
+                  ]
+                : []),
+              {
+                "@type": "ListItem",
+                position: categoryTitle ? 3 : 2,
+                name: post.title,
+                item: canonicalUrl,
+              },
+            ],
+          }),
+        }}
+      />
+
       <div className="max-w-6xl mx-auto">
         <article className=" motion-preset-focus motion-delay-100 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 sm:p-10 mb-8">
           {/* Category Badge */}
-          <div className="mb-4">
-            <span className="inline-block px-4 py-1.5 bg-peach/10 text-peach rounded-full text-sm font-medium border border-peach/30">
-              {post.categories[0].title}
-            </span>
-          </div>
+          {categoryTitle && (
+            <div className="mb-4">
+              <span className="inline-block px-4 py-1.5 bg-peach/10 text-peach rounded-full text-sm font-medium border border-peach/30">
+                {categoryTitle}
+              </span>
+            </div>
+          )}
 
           {/* Title */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-zinc-50 mb-4 leading-tight">
@@ -160,7 +241,7 @@ export default async function BlogPost({ params }: PageProps) {
           <div className="flex items-center justify-between mt-6 flex-wrap gap-4">
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-                <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full p-2" />
+                <img src={urlFor(post.author.authorImg).url()} alt={post.author.name} className="w-full h-full object-cover rounded-full p-2" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -182,7 +263,7 @@ export default async function BlogPost({ params }: PageProps) {
 
         {/* Article Body */}
         <div className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 flex flex-col rounded-2xl shadow-lg dark:shadow-black/30 pb-4  mb-8">
-          <img src={urlFor(post.coverImage).url()} alt={post.slug} className="w-full h-86 object-cover rounded-t-2xl" />
+          <img src={coverImageUrl} alt={post.title} className="w-full h-86 object-cover rounded-t-2xl" />
           <div className="px-6 pt-4 sm:px-10 text-gray-800 dark:text-zinc-200">
             <PortableText value={post.body} components={portableTextComponents} />
           </div>
@@ -193,7 +274,7 @@ export default async function BlogPost({ params }: PageProps) {
           <h3 className="text-xl font-bold text-gray-900 dark:text-zinc-50 mb-4">Written by</h3>
           <div className="flex items-start gap-4">
             <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-              <img src={urlFor(post.author.authorImg).url()} alt="Author Image" className="w-full h-full object-cover rounded-full p-2" />
+              <img src={urlFor(post.author.authorImg).url()} alt={post.author.name} className="w-full h-full object-cover rounded-full p-2" />
             </div>
             <div>
               <p className="font-semibold text-lg text-gray-900 dark:text-zinc-50">{post.author.name}</p>
@@ -213,30 +294,27 @@ export default async function BlogPost({ params }: PageProps) {
           <h3 className="text-2xl font-bold text-gray-900 dark:text-zinc-50 mb-6">Related Articles</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Related3.length === 0 && <p className="text-gray-600 dark:text-zinc-400 text-center col-span-3">No related articles found.</p>}
-            {Related3.map((post: any,index: number) =>{
-                const firstCategory =
-                  Array.isArray(post.categories) && post.categories.length > 0
-                    ? post.categories[0].title || ''
-                    : '';
+            {Related3.map((post: any, index: number) => {
+              const firstCategory =
+                Array.isArray(post.categories) && post.categories.length > 0
+                  ? post.categories[0].title || ''
+                  : '';
 
-                const cardData: newsCard = {
-                  title: post.title || '',
-                  description: post.description || '',      // if your post has no description
-                  coverImage: post.coverImage || '',       // string from your data
-                  categories: firstCategory,
-                  slug: post.slug || '',
-                  publishedAt: post.publishedAt || '',
-                  id: post.id || '',
-                  delay: (index+1) * 100,
-                };
+              const cardData: newsCard = {
+                title: post.title || '',
+                description: post.description || '',
+                coverImage: post.coverImage || '',
+                categories: firstCategory,
+                slug: post.slug || '',
+                publishedAt: post.publishedAt || '',
+                id: post.id || '',
+                delay: (index + 1) * 100,
+              };
 
-                
-              return <BarticleSmall key={post.id} {...cardData} ></BarticleSmall>
-            } )}   
-
+              return <BarticleSmall key={post.id} {...cardData}></BarticleSmall>
+            })}
           </div>
         </div>
-
       </div>
     </main>
   );
