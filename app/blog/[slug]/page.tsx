@@ -160,6 +160,19 @@ export default async function BlogPost({ params }: PageProps) {
     url: canonicalUrl,
   };
 
+const FAQJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((faq:   any) => ({
+    "@type": "Question",
+    name: faq.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.answer,
+    },
+  })),
+};
+
   const breadcrumbItems = [
     {
       "@type": "ListItem",
@@ -197,6 +210,10 @@ export default async function BlogPost({ params }: PageProps) {
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+    />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQJsonLd), }}
     />
 
     <div className="max-w-7xl mx-auto">

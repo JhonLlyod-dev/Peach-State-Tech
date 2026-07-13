@@ -27,15 +27,15 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
         {faqs.map((faq, i) => {
           const isOpen = openFaq === i;
           return (
-            <div key={faq._key}>
+            <article key={faq._key}>
               <button
                 onClick={() => setOpenFaq(isOpen ? null : i)}
                 aria-expanded={isOpen}
-                className="w-full flex items-center justify-between gap-4 py-4 text-left"
+                className="w-full flex items-center justify-between gap-4 py-4 text-left list-none"
               >
-                <span className="font-medium text-gray-900 dark:text-zinc-100">
+                <summary className="font-medium text-gray-900 dark:text-zinc-100">
                   {faq.question}
-                </span>
+                </summary>
                 <ChevronDown
                   className={`w-5 h-5 flex-shrink-0 text-peach transition-transform duration-200 ${
                     isOpen ? "rotate-180" : ""
@@ -48,12 +48,12 @@ export default function FaqAccordion({ faqs }: { faqs: Faq[] }) {
                 }`}
               >
                 <div className="overflow-hidden">
-                  <p className="text-gray-600 dark:text-zinc-400 leading-relaxed">
+                  <summary className="text-gray-600 dark:text-zinc-400 leading-relaxed">
                     {faq.answer}
-                  </p>
+                  </summary>
                 </div>
               </div>
-            </div>
+            </article>
           );
         })}
       </div>
