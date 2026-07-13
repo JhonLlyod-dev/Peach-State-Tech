@@ -10,7 +10,9 @@ export default function BarticleSmall(card: newsCard) {
       {/* Image */}
       <img
         src={urlFor(card.coverImage).url()}
-        alt="Article Thumbnail"
+        alt={`Thumbnail for ${card.title}`}
+        width={368}
+        height={128}
         className="w-full h-32 object-cover"
       />
 

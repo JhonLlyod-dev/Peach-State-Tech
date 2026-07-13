@@ -4,12 +4,15 @@ export const portableTextComponents = {
   types: {
     image: ({ value }: any) => {
       const filename = value?.asset?.originalFilename;
+      const altTitle = "Article supporting image: " + filename?.split(".")[0];
 
       return (
         <div className="my-8 flex-center">
           <img
             src={urlFor(value).width(1000).height(600).url()}
-            alt={filename || "Blog image from Peach State Tech"}
+            width={1000}
+            height={600}
+            alt={altTitle || "Blog image from Peach State Tech"}
             className="rounded-lg object-cover"
           />
         </div>

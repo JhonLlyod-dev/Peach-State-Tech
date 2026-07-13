@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getArticle, sameCategory } from "@/sanity/queries";
+import { getArticle, sameCategory, getFaqs } from "@/sanity/queries";
 import PageNotFound from "@/app/not-found";
 import { formatDate } from "@/lib/format";
 import { urlFor } from "@/sanity/sanityClient";
@@ -9,6 +9,9 @@ import { portableTextComponents } from "@/lib/Portable";
 import { newsCard } from "@/components/Card";
 import CopyLinkButton from "@/components/Copy";
 import SubscribeForm from "@/components/SubscribeForm";
+import nlp from "compromise";
+import FaqAccordion from "@/components/FaqAccordion";
+import { Calendar, PenLine, BookOpen, HelpCircle, Newspaper, Mail } from "lucide-react";
 
 type Post = {
   title: string;
@@ -17,18 +20,15 @@ type Post = {
   publishedAt: string;
   coverImage: string;
   slug: string;
-
   categories: {
     title: string;
   }[];
-
   author: {
     name: string;
     role: string;
     bio: string;
     authorImg: string;
   };
-
   body: any;
 };
 
@@ -36,9 +36,9 @@ async function fetchPostBySlug(slug: string): Promise<Post | null> {
   try {
     const article = await getArticle(slug);
 
-    if (!article || !article.length) return null; // nothing found
+    if (!article || !article.length) return null;
 
-    const data = article[0]; // pick first element
+    const data = article[0];
 
     return {
       title: data.title,
@@ -61,7 +61,6 @@ type PageProps = {
   params: Promise<{ slug: string; id: string }>;
 };
 
-// ✅ Dynamic metadata
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await fetchPostBySlug(slug);
@@ -74,6 +73,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const categoryTitle = post.categories?.[0]?.title ?? "";
+  const doc = nlp(categoryTitle + post.description);
+  const Keywords = doc.nouns().out("array");
 
   return {
     title: `${post.title}`,
@@ -100,9 +101,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       canonical: `https://www.peachstate.tech/blog/${post.slug}`,
     },
     keywords: [
-      post.title,
-      post.description,
-      categoryTitle,
+      ...Keywords,
       "Peach State Tech",
       "Blog",
       "Peach State Blog",
@@ -125,6 +124,9 @@ export default async function BlogPost({ params }: PageProps) {
 
   const categoryTitle = post.categories?.[0]?.title ?? "";
   const Related3 = await sameCategory(categoryTitle, post.id);
+
+  const result = await getFaqs(post.id);
+  const faqs = result?.FAQs ?? [];
 
   const coverImageUrl = urlFor(post.coverImage).url();
   const canonicalUrl = `https://www.peachstate.tech/blog/${post.slug}`;
@@ -158,164 +160,218 @@ export default async function BlogPost({ params }: PageProps) {
     url: canonicalUrl,
   };
 
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://www.peachstate.tech",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: "https://www.peachstate.tech/blog",
+    },
+  ];
+
+  breadcrumbItems.push({
+    "@type": "ListItem",
+    position: breadcrumbItems.length + 1,
+    name: post.title,
+    item: canonicalUrl,
+  });
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": undefined, // placeholder removed below
+    itemListElement: breadcrumbItems,
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.peachstate.tech",
-              },
-              ...(categoryTitle
-                ? [
-                    {
-                      "@type": "ListItem",
-                      position: 2,
-                      name: categoryTitle,
-                      item: `https://www.peachstate.tech/browse?category=${encodeURIComponent(
-                        categoryTitle
-                      )}`,
-                    },
-                  ]
-                : []),
-              {
-                "@type": "ListItem",
-                position: categoryTitle ? 3 : 2,
-                name: post.title,
-                item: canonicalUrl,
-              },
-            ],
-          }),
-        }}
-      />
+  <main className=" scroll-smooth min-h-screen bg-gradient-to-b from-gray-50 to-white dark:from-zinc-950 dark:to-zinc-900 py-10 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+    />
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+    />
 
-      <div className="max-w-6xl mx-auto">
-        <article className=" motion-preset-focus motion-delay-100 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 sm:p-10 mb-8">
-          {/* Category Badge */}
+    <div className="max-w-7xl mx-auto">
+      {/* ── Hero ─────────────────────────────────────────── */}
+      <article className="motion-preset-focus motion-delay-100 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 overflow-hidden mb-8">
+        <img
+          src={coverImageUrl}
+          alt={"Cover image for " + post.title}
+          width={1200}
+          height={630}
+          className="w-full h-64 sm:h-80 object-cover"
+        />
+
+        <div className="p-6 sm:p-10">
           {categoryTitle && (
-            <div className="mb-4">
-              <span className="inline-block px-4 py-1.5 bg-peach/10 text-peach rounded-full text-sm font-medium border border-peach/30">
-                {categoryTitle}
-              </span>
-            </div>
+            <span className="inline-block mb-4 px-4 py-1.5 bg-peach/10 text-peach rounded-full text-sm font-medium border border-peach/30">
+              {categoryTitle}
+            </span>
           )}
 
-          {/* Title */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-zinc-50 mb-4 leading-tight">
             {post.title}
           </h1>
 
-          {/* Description */}
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-zinc-400 mb-8 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-zinc-400 mb-6 leading-relaxed">
             {post.description}
           </p>
 
-          {/* Meta Information */}
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm text-gray-600 dark:text-zinc-400 pb-6 border-b border-peach">
-            <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-peach" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+          <div className="flex items-center justify-between gap-2 text-sm text-gray-600 dark:text-zinc-400 pt-4 border-t border-peach/40">
+            <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-zinc-400 ">
+              <Calendar className="w-4 h-4 text-peach" />
               <span>{formatDate(post.publishedAt)}</span>
             </div>
+
+            <CopyLinkButton/>
           </div>
 
-          {/* Author Info */}
-          <div className="flex items-center justify-between mt-6 flex-wrap gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-                <img src={urlFor(post.author.authorImg).url()} alt={post.author.name} className="w-full h-full object-cover rounded-full p-2" />
+
+        </div>
+      </article>
+
+      {/* ── Content grid: sticky sidebar + main column ─────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 items-start">
+        {/* Sidebar */}
+        <aside className="lg:col-span-1 lg:sticky lg:top-8 flex flex-col gap-6 order-2 lg:order-1">
+          {/* Author card */}
+          <div className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 border border-gray-100 dark:border-zinc-700">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-16 h-16 rounded-full bg-gradient-violet-bottom flex items-center justify-center text-white font-semibold text-xl ring-2 ring-peach/20 flex-shrink-0">
+                <img
+                  src={urlFor(post.author.authorImg).url()}
+                  alt={post.author.name}
+                  width={64}
+                  height={64}
+                  className="w-full h-full object-cover rounded-full p-2"
+                />
               </div>
               <div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-3.5 h-3.5 text-gray-400 dark:text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                  </svg>
-                  <p className="font-semibold text-gray-900 dark:text-zinc-100">{post.author.name}</p>
+                <div className="flex items-center gap-1.5 mb-1">
+                  <PenLine className="w-3.5 h-3.5 text-gray-400 dark:text-zinc-500" />
+                  <span className="text-xs font-medium uppercase tracking-wide text-gray-400 dark:text-zinc-500">
+                    Written by
+                  </span>
                 </div>
-                <p className="text-sm text-gray-600 dark:text-zinc-400">{post.author.role}</p>
+                <p className="font-semibold text-lg text-gray-900 dark:text-zinc-100 leading-tight">
+                  {post.author.name}
+                </p>
+                <span className="inline-block mt-1.5 px-2.5 py-0.5 bg-peach/10 text-peach rounded-full text-xs font-medium border border-peach/30">
+                  {post.author.role}
+                </span>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex items-center gap-2">
-              <CopyLinkButton/>
-            </div>
+            <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-4">
+              {post.author.bio}
+            </p>
           </div>
-        </article>
 
-        {/* Article Body */}
-        <div className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 flex flex-col rounded-2xl shadow-lg dark:shadow-black/30 pb-4  mb-8">
-          <img src={coverImageUrl} alt={post.title} className="w-full h-86 object-cover rounded-t-2xl" />
-          <div className="px-6 pt-4 sm:px-10 text-gray-800 dark:text-zinc-200">
+          {/* Quick nav — keeps every section reachable without scrolling */}
+          <nav className="motion-preset-focus motion-delay-250 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-4 border border-gray-100 dark:border-zinc-700">
+            <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 dark:text-zinc-500 px-2 mb-2">
+              On this page
+            </p>
+
+            <a
+              href="#article-body"
+              className="flex items-center gap-2 px-2 py-2 rounded-lg text-sm text-gray-700 dark:text-zinc-300 hover:bg-peach/10 hover:text-peach transition-colors"
+            >
+              <BookOpen className="w-4 h-4" />
+              <span>Article</span>
+            </a>
+
+            {faqs?.length > 0 && (
+              <a
+                href="#faqs"
+                className="flex items-center gap-2 px-2 py-2 rounded-lg text-sm text-gray-700 dark:text-zinc-300 hover:bg-peach/10 hover:text-peach transition-colors"
+              >
+                <HelpCircle className="w-4 h-4" />
+                <span>FAQs</span>
+              </a>
+            )}
+
+            <a
+              href="#related"
+              className="flex items-center gap-2 px-2 py-2 rounded-lg text-sm text-gray-700 dark:text-zinc-300 hover:bg-peach/10 hover:text-peach transition-colors"
+            >
+              <Newspaper className="w-4 h-4" />
+              <span>Related articles</span>
+            </a>
+          </nav>
+
+          {/* Subscribe */}
+          <div className="motion-preset-focus motion-delay-300 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 border border-gray-100 dark:border-zinc-700">
+            <div className="flex items-center gap-2 mb-1">
+              <Mail className="w-4 h-4 text-peach" />
+              <p className="font-semibold text-gray-900 dark:text-zinc-50">
+                Enjoyed this post?
+              </p>
+            </div>
+            <SubscribeForm />
+          </div>
+        </aside>
+
+        {/* Main column */}
+        <div className="lg:col-span-3 flex flex-col gap-8 order-1 lg:order-2">
+          {/* Article body */}
+          <div
+            id="article-body"
+            className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 sm:p-10 text-gray-800 dark:text-zinc-200 scroll-mt-8"
+          >
             <PortableText value={post.body} components={portableTextComponents} />
           </div>
-        </div>
 
-        {/* Author Bio Card */}
-        <div className="motion-preset-focus motion-delay-300 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 sm:p-8 mb-8 border border-gray-100 dark:border-zinc-700">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-zinc-50 mb-4">Written by</h3>
-          <div className="flex items-start gap-4">
-            <div className="w-20 h-20 rounded-full bg-gradient-violet-bottom  flex items-center justify-center text-white font-semibold text-2xl ring-2 ring-peach/20 flex-shrink-0">
-              <img src={urlFor(post.author.authorImg).url()} alt={post.author.name} className="w-full h-full object-cover rounded-full p-2" />
+          {/* FAQs — client-rendered accordion */}
+          <FaqAccordion faqs={faqs} />
+
+          {/* Related articles */}
+          <div id="related" className="scroll-mt-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-zinc-50 mb-6 flex items-center gap-2">
+              <Newspaper className="w-5 h-5 text-peach" />
+              <span>Related articles</span>
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {Related3.length === 0 && (
+                <p className="text-gray-600 dark:text-zinc-400 text-center col-span-2">
+                  No related articles found.
+                </p>
+              )}
+
+              {Related3.map((relatedPost: any, index: number) => {
+                const firstCategory =
+                  Array.isArray(relatedPost.categories) && relatedPost.categories.length > 0
+                    ? relatedPost.categories[0].title || ""
+                    : "";
+
+                const cardData: newsCard = {
+                  title: relatedPost.title || "",
+                  description: relatedPost.description || "",
+                  coverImage: relatedPost.coverImage || "",
+                  categories: firstCategory,
+                  slug: relatedPost.slug || "",
+                  publishedAt: relatedPost.publishedAt || "",
+                  id: relatedPost.id || "",
+                  delay: (index + 1) * 100,
+                };
+
+                return <BarticleSmall key={relatedPost.id} {...cardData} />;
+              })}
             </div>
-            <div>
-              <p className="font-semibold text-lg text-gray-900 dark:text-zinc-50">{post.author.name}</p>
-              <p className="text-gray-600 dark:text-zinc-400 mb-3">{post.author.role}</p>
-              <p className="text-gray-700 dark:text-zinc-300 leading-relaxed">{post.author.bio}</p>
-            </div>
-          </div>
-
-          <hr className="border-gray-100 dark:border-zinc-700 my-6" />
-
-          <p className="font-semibold text-gray-900 dark:text-zinc-50 mb-1">Enjoyed this post?</p>
-          <SubscribeForm/>
-        </div>
-
-        {/* Related Articles Section */}
-        <div className="mb-8">
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-zinc-50 mb-6">Related Articles</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Related3.length === 0 && <p className="text-gray-600 dark:text-zinc-400 text-center col-span-3">No related articles found.</p>}
-            {Related3.map((post: any, index: number) => {
-              const firstCategory =
-                Array.isArray(post.categories) && post.categories.length > 0
-                  ? post.categories[0].title || ''
-                  : '';
-
-              const cardData: newsCard = {
-                title: post.title || '',
-                description: post.description || '',
-                coverImage: post.coverImage || '',
-                categories: firstCategory,
-                slug: post.slug || '',
-                publishedAt: post.publishedAt || '',
-                id: post.id || '',
-                delay: (index + 1) * 100,
-              };
-
-              return <BarticleSmall key={post.id} {...cardData}></BarticleSmall>
-            })}
           </div>
         </div>
       </div>
-    </main>
-  );
+    </div>
+  </main>
+);
+    
 }

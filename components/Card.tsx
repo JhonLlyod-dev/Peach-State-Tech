@@ -21,7 +21,9 @@ export default function Card(card: newsCard) {
     <div className={` motion-preset-slide-up w-full bg-white dark:bg-zinc-800 rounded-lg shadow-md dark:shadow-black/30 overflow-hidden hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300 flex flex-col`}>
       <img
         src={urlFor(card.coverImage).url()}
-        alt={card.title}
+        alt={`Thumbnail for ${card.title}`}
+        width={368}
+        height={128}
         className="w-full h-40 sm:h-48 md:h-56 object-cover "
       />
 

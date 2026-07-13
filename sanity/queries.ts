@@ -65,6 +65,14 @@ export function totalSearchResults(query: string) {
   `);
 }
 
+
+export function getFaqs(ID: string) {
+  return sanityClient.fetch(
+    `*[_type == "post" && _id == "${ID}"][0]{
+      "FAQs": faqs
+    }`
+  );
+}
  export function getArticle(slug: string) {
 
   return sanityClient.fetch(`
