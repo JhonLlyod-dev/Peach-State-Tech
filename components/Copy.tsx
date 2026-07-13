@@ -22,6 +22,7 @@ export default function CopyLinkButton() {
     <div className="relative inline-block">
       {/* Button */}
       <button
+        aria-label="Copy link"
         onClick={handleCopy}
         className="flex items-center gap-2 px-3 py-2.5 hover:bg-gray-100 dark:hover:bg-zinc-700 rounded-lg transition-colors duration-200 group"
       >

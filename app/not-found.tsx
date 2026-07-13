@@ -1,7 +1,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Search, Home } from "lucide-react";
+import { Search, Home } from "lucide-react";
 
 export default function PageNotFound() {
   return (

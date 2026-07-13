@@ -48,8 +48,9 @@ export default function BrowsePage() {
             src="/background.webp"
             alt="Atlanta skyline, home to Georgia's growing tech ecosystem"
             fill
-            className="object-cover"
+            sizes="100vw"
             priority
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-linear-to-tr from-peach/20 to-transparent" />
         </div>

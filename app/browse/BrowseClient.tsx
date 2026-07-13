@@ -71,7 +71,7 @@ export default function BrowseClient() {
             className="outline-none text-white transition-all duration-300 tracking-wide w-full bg-transparent  placeholder:text-white"
             placeholder="Search Author, Company, or Keyword..."
           />
-          <button onClick={handleSearch} className="text-white hover:text-violet cursor-pointer transition-colors">
+          <button aria-label="Search" onClick={handleSearch} className="text-white hover:text-violet cursor-pointer transition-colors">
             <Search size={16} />
           </button>
         </div>
@@ -121,6 +121,7 @@ export default function BrowseClient() {
             <div className="flex items-center justify-center gap-1.5">
               {/* Prev */}
               <button
+                aria-label="Previous Page"
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
                 className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
@@ -158,6 +159,7 @@ export default function BrowseClient() {
                   }
                   return (
                     <button
+                      aria-label={`Go to page ${p}`}
                       key={p}
                       onClick={() => handlePageChange(p)}
                       className={`flex items-center justify-center w-9 h-9 rounded-md text-sm font-medium transition-colors cursor-pointer ${
@@ -174,6 +176,7 @@ export default function BrowseClient() {
 
               {/* Next */}
               <button
+                aria-label="Next Page"
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
                 className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"

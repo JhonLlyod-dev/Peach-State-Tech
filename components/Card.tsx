@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { urlFor } from "@/sanity/sanityClient";
 import { formatDate } from "@/lib/format";
+import Image from "next/image";
 
 export type newsCard = {
   title: string;
@@ -19,12 +20,13 @@ export default function Card(card: newsCard) {
 
   return (
     <div className={` motion-preset-slide-up w-full bg-white dark:bg-zinc-800 rounded-lg shadow-md dark:shadow-black/30 overflow-hidden hover:shadow-xl dark:hover:shadow-black/40 transition-shadow duration-300 flex flex-col`}>
-      <img
+      <Image
         src={urlFor(card.coverImage).url()}
         alt={`Thumbnail for ${card.title}`}
         width={368}
         height={128}
-        className="w-full h-40 sm:h-48 md:h-56 object-cover "
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="w-full object-cover "
       />
 
       {/* Card Content */}
@@ -49,6 +51,7 @@ export default function Card(card: newsCard) {
         <div className="flex justify-between items-center mt-4 text-gray-500 dark:text-zinc-500 text-xs sm:text-sm">
           <span>{formatDate(card.publishedAt)}</span>
           <Link
+            aria-label="Read more about the Article"
             href={`/blog/${card.slug}`}
             className="text-peach font-semibold hover:underline hover:text-violet transition ease-in"
           >

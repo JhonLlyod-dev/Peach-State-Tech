@@ -7,6 +7,7 @@ import { getNewsCard } from "@/sanity/queries";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import ThemeToggle from "@/components/ThemeToggle";
+import Image from "next/image";
 
 function CardSkeleton() {
   return (
@@ -64,8 +65,11 @@ export default function Home() {
     <main className="relative flex flex-col min-h-screen bg-zinc-50 dark:bg-zinc-900 font-sans">
       {/* Hero */}
       <section className="relative w-full h-80 sm:h-96 md:h-112 overflow-hidden bg-zinc-950 dark:bg-black">
-        <img
+        <Image
           src="/background.webp"
+          fill
+          sizes="100vw"
+          priority
           alt="Atlanta skyline representing Georgia's growing tech ecosystem"
           className="h-full w-full object-cover"
         />

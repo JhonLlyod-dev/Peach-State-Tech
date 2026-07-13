@@ -1,12 +1,16 @@
+import Image from "next/image";
+
 export default function About() {
   return (
     <main className="min-h-screen bg-zinc-50 dark:bg-zinc-900 font-sans overflow-hidden">
 
       {/* ── Hero ── full-bleed photo background */}
       <section className="relative h-[70vh] min-h-[480px] max-h-[720px] flex items-end overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1634010727710-aeef03fa4cba?q=80&w=1847&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&h=1080"
           alt="Atlanta skyline at dusk"
+          fill
+          priority
           className="motion-preset-fade motion-delay-100 absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/60 to-zinc-900/20" />
@@ -53,11 +57,13 @@ export default function About() {
           </p>
         </div>
 
-        <div className="motion-preset-slide-left motion-delay-400 relative">
-          <img
+        <div className="motion-preset-slide-left motion-delay-400 relative h-80 lg:h-96">
+          <Image
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80&auto=format&fit=crop"
             alt="Startup team collaborating around a table"
-            className="w-full h-80 lg:h-96 object-cover rounded-sm shadow-lg dark:shadow-black/30"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover rounded-sm shadow-lg dark:shadow-black/30"
           />
           <div className="absolute -bottom-3 -left-3 w-16 h-16 border-b-4 border-l-4 border-peach rounded-bl-sm" />
         </div>
@@ -68,11 +74,13 @@ export default function About() {
       <section className="bg-zinc-900 dark:bg-black text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          <div className="motion-preset-slide-right motion-delay-200 relative order-2 lg:order-1">
-            <img
+          <div className="motion-preset-slide-right motion-delay-200 relative order-2 lg:order-1 h-80 lg:h-96">
+            <Image
               src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=900&q=80&auto=format&fit=crop"
               alt="Modern open tech office workspace"
-              className="w-full h-80 lg:h-96 object-cover rounded-sm shadow-2xl"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover rounded-sm shadow-2xl"
             />
             <div className="absolute -top-3 -right-3 w-16 h-16 border-t-4 border-r-4 border-violet rounded-tr-sm" />
           </div>
@@ -126,10 +134,12 @@ export default function About() {
       {/* ── Who It's For ── photo banner + cards */}
       <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-24 py-24">
         <div className="motion-preset-fade motion-delay-100 relative w-full h-56 sm:h-72 mb-16 overflow-hidden rounded-sm">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1400&q=80&auto=format&fit=crop"
             alt="Georgia tech community networking event"
             className="w-full h-full object-cover object-top"
+            fill
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-zinc-900/85 via-zinc-900/50 to-transparent flex items-center px-8 sm:px-12">
             <div>
@@ -194,10 +204,12 @@ export default function About() {
 
       {/* ── CTA ── photo with peach overlay */}
       <section className="motion-preset-fade motion-delay-300 relative overflow-hidden">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=1400&q=80&auto=format&fit=crop"
           alt="Founders shaking hands at a Georgia tech event"
           className="absolute inset-0 w-full h-full object-cover"
+          sizes="100vw"
+          fill
         />
         <div className="absolute inset-0 bg-linear-to-r from-peach/90 to-peach-light/90 dark:from-violet/90 dark:to-violet/90" />
 

@@ -7,17 +7,19 @@ export default function Load() {
         <Image
           src="/logo1.webp"
           alt="Peach State Tech"
-          fill
           className="object-contain"
+          fill
+          sizes="48px"
           style={{ animation: "psFadeA 1.8s ease-in-out infinite" }}
           priority
         />
         <Image
           src="/logo_white.webp"
           alt="Peach State Tech"
-          fill
           className="object-contain"
           style={{ animation: "psFadeB 1.8s ease-in-out infinite" }}
+          fill
+          sizes="48px"
           priority
         />
       </div>

@@ -12,6 +12,7 @@ import SubscribeForm from "@/components/SubscribeForm";
 import nlp from "compromise";
 import FaqAccordion from "@/components/FaqAccordion";
 import { Calendar, PenLine, BookOpen, HelpCircle, Newspaper, Mail } from "lucide-react";
+import Image from "next/image";
 
 type Post = {
   title: string;
@@ -219,12 +220,14 @@ const FAQJsonLd = {
     <div className="max-w-7xl mx-auto">
       {/* ── Hero ─────────────────────────────────────────── */}
       <article className="motion-preset-focus motion-delay-100 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 overflow-hidden mb-8">
-        <img
+        <Image
           src={coverImageUrl}
-          alt={"Cover image for " + post.title}
+          alt={`Cover image for ${post.title}`}
           width={1200}
           height={630}
-          className="w-full h-64 sm:h-80 object-cover"
+          priority
+          sizes="100vw"
+          className="w-full h-auto"
         />
 
         <div className="p-6 sm:p-10">
@@ -263,7 +266,7 @@ const FAQJsonLd = {
           <div className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 border border-gray-100 dark:border-zinc-700">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 rounded-full bg-gradient-violet-bottom flex items-center justify-center text-white font-semibold text-xl ring-2 ring-peach/20 flex-shrink-0">
-                <img
+                <Image
                   src={urlFor(post.author.authorImg).url()}
                   alt={post.author.name}
                   width={64}

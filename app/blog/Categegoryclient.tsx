@@ -87,6 +87,7 @@ export default function CategoryClient() {
       <div className="flex flex-wrap gap-3 mb-8 pb-6 border-b border-zinc-200">
         {categories.map((category: any) => (
           <button
+            aria-label={` Filter by ${category.title}`}
             key={category._id}
             onClick={() => handleCategoryChange(category.title)}
             className={`text-xs font-semibold px-4 py-2 rounded-full border transition-colors cursor-pointer ${
@@ -152,6 +153,7 @@ export default function CategoryClient() {
             {totalPages > 1 && (
               <div className="flex items-center justify-center gap-1.5 mt-10">
                 <button
+                  aria-label="Previous page"
                   onClick={() => handlePageChange(pageParam - 1)}
                   disabled={pageParam === 1}
                   className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"
@@ -169,6 +171,7 @@ export default function CategoryClient() {
                   }
                   return (
                     <button
+                      aria-label={`Go to page ${p}`}
                       key={p}
                       onClick={() => handlePageChange(p)}
                       className={`flex items-center justify-center w-9 h-9 rounded-md text-sm font-medium transition-colors cursor-pointer ${
@@ -183,6 +186,7 @@ export default function CategoryClient() {
                 })}
 
                 <button
+                  aria-label="Next page"
                   onClick={() => handlePageChange(pageParam + 1)}
                   disabled={pageParam === totalPages}
                   className="flex items-center justify-center w-9 h-9 rounded-md border border-zinc-200 text-zinc-500 hover:border-peach hover:text-peach disabled:opacity-40 disabled:hover:border-zinc-200 disabled:hover:text-zinc-500 transition-colors cursor-pointer"

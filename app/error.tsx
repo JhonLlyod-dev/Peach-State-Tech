@@ -9,6 +9,7 @@ export default function Error() {
           src="/logo1.webp"
           alt="Peach State Tech"
           fill
+          sizes="96px"
           className="object-contain motion-preset-fade-sm"
           style={{ animation: "psFadeA 1.8s ease-in-out infinite" }}
           priority
@@ -17,6 +18,7 @@ export default function Error() {
           src="/logo_white.webp"
           alt="Peach State Tech"
           fill
+          sizes="96px"
           className="object-contain"
           style={{ animation: "psFadeB 1.8s ease-in-out infinite" }}
           priority

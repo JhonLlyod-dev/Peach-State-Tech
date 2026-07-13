@@ -1,6 +1,7 @@
+'use client';
 import Image from "next/image";
 
-export default function Loading() {
+export default function Error() {
   return (
     <div className="flex flex-col items-center min-h-[80vh] justify-center gap-4 py-12">
       <div className="relative w-20 h-20 sm:w-24 sm:h-24">
@@ -8,6 +9,7 @@ export default function Loading() {
           src="/logo1.webp"
           alt="Peach State Tech"
           fill
+          sizes="96px"
           className="object-contain motion-preset-fade-sm"
           style={{ animation: "psFadeA 1.8s ease-in-out infinite" }}
           priority
@@ -16,6 +18,7 @@ export default function Loading() {
           src="/logo_white.webp"
           alt="Peach State Tech"
           fill
+          sizes="96px"
           className="object-contain"
           style={{ animation: "psFadeB 1.8s ease-in-out infinite" }}
           priority

@@ -12,6 +12,8 @@ export const portableTextComponents = {
             src={urlFor(value).width(1000).height(600).url()}
             width={1000}
             height={600}
+            loading="lazy"
+            sizes="100vw"
             alt={altTitle || "Blog image from Peach State Tech"}
             className="rounded-lg object-cover"
           />

@@ -2,7 +2,7 @@
 import { FaFacebookF, FaTiktok , FaLinkedinIn, FaInstagram,FaYoutube } from "react-icons/fa";
 import Link from "next/link";
 import NewsletterForm from "./Newsletter";
-import { FaX, FaY, FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 import CookieSettingsLink from "./cookies/CookieSettingsLink";
 
 export default function Footer() {
@@ -36,11 +36,11 @@ export default function Footer() {
         <div className="flex flex-col gap-4 mt-4 md:mt-0 motion-preset-fade motion-delay-400">
           <h4 className="font-semibold text-zinc-200">Socials</h4>
           <div className="flex gap-4">
-            <a rel="noopener noreferrer nofollow" href="https://www.facebook.com/profile.php?id=61588566181619" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
-            <a rel="noopener noreferrer nofollow" href="https://www.instagram.com/peachstatetech.team/" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaInstagram /></a>
-            <a rel="noopener noreferrer nofollow" href="https://x.com/peach_state2026" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
-            <a rel="noopener noreferrer nofollow" href="https://www.tiktok.com/@peach_state_tech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
-            <a href="https://www.youtube.com/@PeachStateTech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
+            <a aria-label="Facebook Page" rel="noopener noreferrer nofollow" href="https://www.facebook.com/profile.php?id=61588566181619" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaFacebookF /></a>
+            <a aria-label="Instagram Page" rel="noopener noreferrer nofollow" href="https://www.instagram.com/peachstatetech.team/" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaInstagram /></a>
+            <a aria-label="Twitter Page" rel="noopener noreferrer nofollow" href="https://x.com/peach_state2026" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaXTwitter /></a>
+            <a aria-label="TikTok Page" rel="noopener noreferrer nofollow" href="https://www.tiktok.com/@peach_state_tech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaTiktok  /></a>
+            <a aria-label="Youtube Page" rel="noopener noreferrer nofollow" href="https://www.youtube.com/@PeachStateTech" className="text-zinc-400 hover:text-peach transition" target="_blank"><FaYoutube /></a>
           </div>
         </div>
 

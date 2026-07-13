@@ -12,6 +12,7 @@ export default function SubscribeForm() {
 
       {/* Beehiiv subscribe form */}
       <iframe
+        title="Beehiiv Subscribe Form"
         src="https://subscribe-forms.beehiiv.com/6cd74b38-1013-4afa-8f9c-e5837870220b"
         className="beehiiv-embed"
         data-test-id="beehiiv-embed"

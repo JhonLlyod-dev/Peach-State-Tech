@@ -37,18 +37,24 @@ export default function Header() {
           
           <div className="flex-center gap-2 hover-link ">
             <span className="hidden sm:block text-3xl font-bold motion-preset-pop motion-delay-100 uppercase hover:text-gradient-peach transition-colors">Peach</span>
-            <img src="/logo1.webp" alt="Company Logo" className="w-10 motion-preset-pop motion-delay-200 " />
+            <img src="/logo1.webp" alt="Peach State Tech Logo" height={10} width={10} className="w-10 motion-preset-pop motion-delay-200 " />
             <span className="hidden sm:block text-3xl font-bold motion-preset-pop motion-delay-300 uppercase hover:text-gradient-peach transition-colors">State</span>
           </div>
           <span className=" hidden lg:block text-xl font-semibold  motion-preset-pop motion-delay-400 uppercase tracking-widest text-gradient-peach hover:text-gradient-violet transition-colors">T e c h</span>
         </div>
       </Link>
 
-      <nav className="flex-center gap-8 flex-row-reverse lg:flex-row  ">
+      <nav className="flex-center gap-8 flex-row-reverse lg:flex-row  " id="mobile-menu">
         <div className="flex relative lg:hidden" >
-          <button className="motion-preset-pop motion-delay-100" onClick={()=> setIsOpen(!isOpen)}>
-            {isOpen && <X /> || <Logs />}
-          </button>
+        <button
+          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+          className="motion-preset-pop motion-delay-100"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X /> : <Logs />}
+        </button>
 
           { isOpen && 
             <div className=" motion-preset-blur-down-md absolute z-40 top-10 right-0 bg-white dark:bg-zinc-800 border border-gray-100 dark:border-zinc-700 shadow-sm dark:shadow-black/30 p-4 ">
@@ -107,7 +113,7 @@ export default function Header() {
             placeholder="Search blog..."
           />
 
-          <button onClick={handleSearch} className="text-white hover:text-violet cursor-pointer">
+          <button aria-label="Search" onClick={handleSearch} className="text-white hover:text-violet cursor-pointer">
               <Search size={16} />
           </button>
 

@@ -13,6 +13,7 @@ export default function NewsletterForm() {
 
       {/* Embed the newsletter form */}
       <iframe
+        title="Beehiiv Subscribe Form"
         src="https://subscribe-forms.beehiiv.com/e87454c8-47dc-484e-a882-5b4b2a712e52"
         className="beehiiv-embed bg-transparent"
         data-test-id="beehiiv-embed"

@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import { Metadata } from "next"
 import CategoryClient from "./Categegoryclient"
 import Load from "@/components/Load"
+import Image from "next/image"
 
 // ─── SEO Metadata ─────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
@@ -71,10 +72,15 @@ export default function BlogPage() {
 
         {/* Image side */}
         <div className="relative w-full h-56 sm:h-72 md:h-80 rounded-2xl overflow-hidden shadow-sm dark:shadow-black/30">
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1496588152823-86ff7695e68f?auto=format&fit=crop&w=1200&q=80"
             alt="Georgia Tech campus, home to startups and AI research"
             className="absolute inset-0 w-full h-full object-cover"
+            width={1200}
+            height={800}
+            sizes="100vw"
+            priority
+
           />
           <div className="absolute inset-0 bg-gradient-to-tr from-violet/20 to-transparent" />
         </div>
