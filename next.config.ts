@@ -31,6 +31,18 @@ const nextConfig: NextConfig = {
         destination: "https://www.peachstate.tech/:path*",
         permanent: true,
       },
+      // Consolidate duplicate Talitrix articles into the primary one
+      // to fix keyword cannibalization for "justin hawkins talitrix"
+      {
+        source: "/blog/talitrix-steps-into-the-spotlight-as-justice-tech-demand-surges-in-georgia",
+        destination: "/blog/justin-hawkins-talitrix-biometric-wristbands-in-georgia",
+        permanent: true,
+      },
+      {
+        source: "/blog/talitrix-emerges-in-alpharetta-with-a-bold-vision-for-modernizing-community-supervision",
+        destination: "/blog/justin-hawkins-talitrix-biometric-wristbands-in-georgia",
+        permanent: true,
+      },
     ];
   },
 };
