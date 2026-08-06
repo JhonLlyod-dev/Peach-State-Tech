@@ -249,8 +249,8 @@ export default function PrivacyPolicy() {
                     </svg>
                     <div>
                       <p className="text-sm text-white/70 mb-1">Email</p>
-                      <a href="mailto:sam@thomasmarketing.solutions" className="font-semibold hover:underline">
-                        sam@thomasmarketing.solutions
+                      <a href="mailto:team@thomasmedia.online" className="font-semibold hover:underline">
+                        team@thomasmedia.online
                       </a>
                     </div>
                   </div>

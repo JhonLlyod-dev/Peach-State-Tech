@@ -37,7 +37,7 @@ export default function ContactPage() {
           <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">Get in Touch</h2>
           <p className="text-zinc-600 dark:text-zinc-400 mb-8">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
           
-          <form action="https://formsubmit.co/sam@thomasmarketing.solutions" method="POST" className="space-y-6">
+          <form action="https://formsubmit.co/team@thomasmedia.online" method="POST" className="space-y-6">
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_next" value="https://www.peachstate.tech/thankyou" />
             <div>
