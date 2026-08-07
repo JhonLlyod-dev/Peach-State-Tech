@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About | Peach State Tech",
+  title: "About Us | Peach State Tech — Covering Georgia's Tech Scene",
   description:
     "Learn about Peach State Tech—our mission, vision, and how we promote Georgia-based tech companies through high-quality, search-optimized coverage.",
   keywords: [
