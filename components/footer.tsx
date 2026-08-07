@@ -21,7 +21,7 @@ export default function Footer() {
           <div className="flex flex-col gap-2">
             <h4 className="font-semibold text-zinc-200">Company</h4>
             <Link href="/" className="text-zinc-400 hover:text-gradient-peach transition">Latest</Link>
-            <Link href="/blogs" className="text-zinc-400 hover:text-gradient-peach transition">Blogs</Link>
+            <Link href="/blog" className="text-zinc-400 hover:text-gradient-peach transition">Blog</Link>
             <Link href="/browse" className="text-zinc-400 hover:text-gradient-peach transition">Browse</Link>
             <Link href="/about" className="text-zinc-400 hover:text-gradient-peach transition">About</Link>
             <Link href="/contact" className="text-zinc-400 hover:text-gradient-peach transition">Contact</Link>
