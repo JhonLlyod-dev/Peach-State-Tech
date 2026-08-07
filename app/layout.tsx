@@ -25,10 +25,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.peachstate.tech"),
-  title: {
-    default: "Peach State Tech | Georgia Tech, Startup & Innovation News",
-    template: "%s | Peach State Tech",
-  },
+  title: "Peach State Tech | Georgia Tech, Startup & Innovation News",
   authors: [{ name: "Peach State Tech" }],
   description:
     "Peach State Tech covers Georgia's startup, AI, and venture capital news — from Atlanta innovation labs to emerging tech companies shaping the state's economy.",
