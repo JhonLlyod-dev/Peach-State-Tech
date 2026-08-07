@@ -82,9 +82,7 @@ export default function NewsGrid() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {cards.map((card) => <Card key={card.slug || card.title} {...card} />)}
           </div>
-          <Link href="/browse" className="mt-10 self-center font-semibold text-sm sm:text-base text-peach dark:text-violet border-2 border-peach dark:border-violet rounded-full px-6 py-2 hover:bg-gradient-peach dark:hover:bg-gradient-violet hover:text-white active:bg-gradient-violet active:border-violet dark:active:border-peach dark:active:bg-gradient-peach transition-colors duration-200">
-            Browse more stories
-          </Link>
+
         </>
       )}
     </section>

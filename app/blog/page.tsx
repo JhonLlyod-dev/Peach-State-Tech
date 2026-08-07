@@ -95,6 +95,59 @@ export default function BlogPage() {
       >
         <CategoryClient />
       </Suspense>
+      <div className="w-full flex justify-center px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32">
+        <div className="w-full max-w-5xl border-t border-zinc-200 dark:border-zinc-700" />
+      </div>
+      <section className="w-full px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 py-14 flex flex-col items-center">
+        <div className="motion-preset-fade-lg motion-delay-100 max-w-2xl mb-10 flex flex-col items-center text-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black leading-tight text-gradient-peach dark:text-gradient-violet tracking-tight mb-4">
+            What You'll Find by Topic
+          </h2>
+          <p className="text-zinc-600 dark:text-zinc-400 text-base sm:text-lg leading-relaxed">
+            Every story is tagged so you can go straight to what matters —
+            from AI breakthroughs to funding rounds across Georgia's tech scene.
+          </p>
+        </div>
+
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {[
+            {
+              delay: "motion-delay-200",
+              q: "What does AI cover?",
+              a: "Breakthroughs and launches from Georgia's AI labs and startups, including work tied to Atlanta's growing AI corridor.",
+            },
+            {
+              delay: "motion-delay-350",
+              q: "Funding vs. Startups?",
+              a: "Funding tracks raises and venture capital activity. Startups covers the companies themselves — product news and growth stories.",
+            },
+            {
+              delay: "motion-delay-500",
+              q: "Who are Founders about?",
+              a: "Interviews and profiles of the people building Georgia's tech economy, from first-timers to serial entrepreneurs.",
+            },
+            {
+              delay: "motion-delay-[650ms]",
+              q: "What's under Policy?",
+              a: "Regulation and state initiatives shaping how Georgia's tech and startup ecosystem grows.",
+            },
+          ].map(({ delay, q, a }) => (
+            <div
+              key={q}
+              className={`
+                motion-preset-slide-up ${delay}
+                group bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-sm p-6
+                hover:border-peach dark:hover:border-violet hover:shadow-md dark:hover:shadow-black/30 transition-all duration-200
+              `}
+            >
+              <h3 className="font-black text-zinc-900 dark:text-zinc-50 text-base mb-2 group-hover:text-gradient-peach dark:group-hover:text-gradient-violet transition-colors duration-200">
+                {q}
+              </h3>
+              <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">{a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   )
 }

@@ -17,20 +17,29 @@ export default function ContactPage() {
 
   return(
     <div className="flex min-h-screen bg-zinc-50 dark:bg-zinc-900 font-sans">
-      <section className="hidden md:block flex-1/4 relative rounded-r-2xl">
-        <div className="absolute inset-0 flex-center flex-col  bg-zinc-950/30 backdrop-blur-xs   px-4 text-center ">
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Be Part of <span className="text-primary text-gradient-peach">Peach State Tech</span>
-          </h1>
+    <section className="hidden md:block flex-1/4 relative rounded-r-2xl">
+      <div className="absolute inset-0 flex items-center justify-center flex-col gap-4 bg-zinc-950/30 backdrop-blur-xs px-8 text-center">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          Be Part of <span className="text-primary text-gradient-peach">Peach State Tech</span>
+        </h1>
 
-          <p className="mt-4 max-w-2xl text-base sm:text-lg md:text-xl text-white/90">
-            Join our growing community of tech enthusiasts and entrepreneurs.
-          </p>
+        <p className="max-w-2xl text-base sm:text-lg md:text-xl text-white/90">
+          Join our growing community of tech enthusiasts and entrepreneurs.
+        </p>
 
+        <div className="flex flex-wrap justify-center gap-2 mt-2">
+          {["Founders", "Investors", "Press", "Partnerships"].map((tag) => (
+            <span
+              key={tag}
+              className="text-xs font-semibold text-white/90 border border-white/30 px-3 py-1 rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
-        <img src="/meeting.jpg" alt="peach-tech-background" className="h-full w-full object-cover " />
-      </section>
+      </div>
+      <img src="/meeting.jpg" alt="peach-tech-background" className="h-full w-full object-cover" />
+    </section>
 
       <section className="flex-1 flex items-center justify-center bg-white dark:bg-zinc-800 p-8">
         <div className="w-full max-w-md">
@@ -95,6 +104,17 @@ export default function ContactPage() {
               Send Message
             </button>
           </form>
+          <div className="mt-8 pt-6 border-t border-zinc-200 dark:border-zinc-700">
+            <h3 className="text-sm font-semibold text-zinc-700 dark:text-zinc-300 mb-2">
+              What happens next?
+            </h3>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed">
+              Our team reviews every submission personally. If you're pitching a
+              story or requesting coverage, include a few details about your
+              company or news — it helps us get back to you faster with next
+              steps.
+            </p>
+          </div>
         </div>
       </section>
     </div>
