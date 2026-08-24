@@ -28,6 +28,7 @@ type Post = {
   author: {
     name: string;
     role: string;
+    slug: string;
     bio: string;
     authorImg: string;
   };
