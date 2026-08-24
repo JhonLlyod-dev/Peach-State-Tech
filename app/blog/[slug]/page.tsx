@@ -13,6 +13,7 @@ import nlp from "compromise";
 import FaqAccordion from "@/components/FaqAccordion";
 import { Calendar, PenLine, BookOpen, HelpCircle, Newspaper, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type Post = {
   title: string;
@@ -263,7 +264,7 @@ const FAQJsonLd = {
         {/* Sidebar */}
         <aside className="lg:col-span-1 lg:sticky lg:top-8 flex flex-col gap-6 order-2 lg:order-1">
           {/* Author card */}
-          <div className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 border border-gray-100 dark:border-zinc-700">
+          <Link href={`/author/${post.author.slug}`} className="motion-preset-focus motion-delay-200 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-6 border border-gray-100 dark:border-zinc-700 hover:bg-gray-50 dark:hover:bg-zinc-700">
             <div className="flex items-center gap-4 mb-4">
               <div className="w-16 h-16 rounded-full bg-gradient-violet-bottom flex items-center justify-center text-white font-semibold text-xl ring-2 ring-peach/20 flex-shrink-0">
                 <Image
@@ -293,7 +294,7 @@ const FAQJsonLd = {
             <p className="text-sm text-gray-700 dark:text-zinc-300 leading-relaxed mb-4">
               {post.author.bio}
             </p>
-          </div>
+          </Link>
 
           {/* Quick nav — keeps every section reachable without scrolling */}
           <nav className="motion-preset-focus motion-delay-250 bg-white dark:bg-zinc-800 rounded-2xl shadow-lg dark:shadow-black/30 p-4 border border-gray-100 dark:border-zinc-700">

@@ -8,9 +8,9 @@ const token = process.env.SANITY_API_TOKEN
 export const sanityClient = createClient({
   projectId: ID,
   dataset: dataset,
-  apiVersion: '2026-01-29',
+  apiVersion: '2026-07-29',
   useCdn: false,
-  token
+  // token
 })
 
 const builder = createImageUrlBuilder(sanityClient)

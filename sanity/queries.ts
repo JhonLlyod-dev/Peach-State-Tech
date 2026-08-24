@@ -101,6 +101,7 @@ export function getFaqs(ID: string) {
       "slug": slug.current,
       "author": author->{
         name,role,
+        "slug": slug.current,
         "bio": bio[0].children[0].text,
         "authorImg": image.asset._ref,
       }
@@ -151,5 +152,16 @@ export function getFaqs(ID: string) {
   `);
  }
 
+export function getAuthor(slug: string){
 
+  return sanityClient.fetch(`
+    *[_type == "author" && slug.current == "${slug}"][0]{
+        name,role, description,
+        "bio": bio,
+        "authorImg": image.asset._ref,
+        "areasOfCoverage": coverage,
+        "authorType": authorType,
+    }
+  `);
 
+}
